@@ -9,6 +9,7 @@ require_once dirname(__DIR__) . '/models/Session.php';
 require_once dirname(__DIR__) . '/models/Speaker.php';
 require_once dirname(__DIR__) . '/models/Room.php';
 
+require_once dirname(__DIR__) . '/controllers/DashboardController.php';
 require_once dirname(__DIR__) . '/controllers/ConferenceController.php';
 require_once dirname(__DIR__) . '/controllers/SessionController.php';
 require_once dirname(__DIR__) . '/controllers/SpeakerController.php';
@@ -24,7 +25,7 @@ if ($controller === 'auth') {
             $username = trim($_POST['username'] ?? '');
             $password = trim($_POST['password'] ?? '');
             if (login($username, $password)) {
-                header('Location: /public/index.php?controller=conference&action=index');
+                header('Location: /public/index.php?controller=dashboard&action=index');
                 exit;
             }
             $error = 'Username or password is incorrect';
@@ -41,6 +42,7 @@ if ($controller === 'auth') {
 requireAuth();
 
 $controllers = [
+    'dashboard'   => new DashboardController(),
     'conference' => new ConferenceController(),
     'session'    => new SessionController(),
     'speaker'    => new SpeakerController(),

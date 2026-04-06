@@ -53,4 +53,10 @@ class Speaker
         $stmt = $this->db->prepare('DELETE FROM speakers WHERE id = :id');
         return $stmt->execute(['id' => $id]);
     }
+
+    public function count(): int
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM speakers");
+        return (int)$stmt->fetchColumn();
+    }
 }

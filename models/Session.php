@@ -91,4 +91,57 @@ class Session
         $stmt->execute(['conference_id' => $conferenceId]);
         return $stmt->fetchAll();
     }
+    public function countByStatus(string $status): int
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(*) FROM sessions WHERE status = :status");
+        $stmt->execute(['status' => $status]);
+        return (int)$stmt->fetchColumn();
+    }
+
+    public function getTodaySessions(): array
+    {
+        $stmt = $this->db->prepare("
+            SELECT s.*, c.title as conference_title, sp.name as speaker_name, r.name as room_name
+            FROM sessions s
+            LEFT JOIN conferences c ON s.conference_id = c.id
+            LEFT JOIN speakers sp ON s.speaker_id = sp.id
+            LEFT JOIN rooms r ON s.room_id = r.id
+            WHERE DATE(s.start_time) = CURRENT_DATE
+            ORDER BY s.start_time ASC
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRecent(int $limit = 5): array
+    {
+        $stmt = $this->db->prepare("
+        SELECT s.*, c.title as conference_title, sp.name as speaker_name
+        FROM sessions s
+        LEFT JOIN conferences c ON s.conference_id = c.id
+        LEFT JOIN speakers sp ON s.speaker_id = sp.id
+        ORDER BY s.created_at DESC
+        LIMIT :limit
+    ");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function count(): int
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM sessions");
+        return (int)$stmt->fetchColumn();
+    }
+
+    public function getStats(): array
+    {
+        return [
+            'scheduled' => $this->countByStatus('scheduled'),
+            'ongoing' => $this->countByStatus('ongoing'),
+            'completed' => $this->countByStatus('completed'),
+            'cancelled' => $this->countByStatus('cancelled'),
+            'total' => $this->count(),
+        ];
+    }
 }

@@ -51,4 +51,10 @@ class Room
         $stmt = $this->db->prepare('DELETE FROM rooms WHERE id = :id');
         return $stmt->execute(['id' => $id]);
     }
+
+    public function count(): int
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM rooms");
+        return (int)$stmt->fetchColumn();
+    }
 }
