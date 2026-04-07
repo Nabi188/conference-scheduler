@@ -1,5 +1,4 @@
 <?php
-
 class SpeakerController
 {
     private Speaker $model;
@@ -24,23 +23,22 @@ class SpeakerController
     {
         $data = [
             'name'       => trim($_POST['name'] ?? ''),
-            'email'      => trim($_POST['email'] ?? ''),
-            'bio'        => trim($_POST['bio'] ?? ''),
-            'company'    => trim($_POST['company'] ?? ''),
-            'job_title'  => trim($_POST['job_title'] ?? ''),
-            'avatar_url' => trim($_POST['avatar_url'] ?? ''),
+            'email'      => trim($_POST['email'] ?? '') ?: null,
+            'bio'        => trim($_POST['bio'] ?? '') ?: null,
+            'company'    => trim($_POST['company'] ?? '') ?: null,
+            'job_title'  => trim($_POST['job_title'] ?? '') ?: null,
+            'avatar_url' => trim($_POST['avatar_url'] ?? '') ?: null,
         ];
 
-        if ($this->model->create($data)) {
-            header('Location: /public/index.php?controller=speaker&action=index');
-            exit;
-        }
+        $this->model->create($data);
+        header('Location: ' . route('speaker'));
+        exit;
     }
 
     public function edit(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=speaker&action=index');
+            header('Location: ' . route('speaker'));
             exit;
         }
 
@@ -57,30 +55,30 @@ class SpeakerController
     public function update(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=speaker&action=index');
+            header('Location: ' . route('speaker'));
             exit;
         }
 
         $data = [
             'name'       => trim($_POST['name'] ?? ''),
-            'email'      => trim($_POST['email'] ?? ''),
-            'bio'        => trim($_POST['bio'] ?? ''),
-            'company'    => trim($_POST['company'] ?? ''),
-            'job_title'  => trim($_POST['job_title'] ?? ''),
-            'avatar_url' => trim($_POST['avatar_url'] ?? ''),
+            'email'      => trim($_POST['email'] ?? '') ?: null,
+            'bio'        => trim($_POST['bio'] ?? '') ?: null,
+            'company'    => trim($_POST['company'] ?? '') ?: null,
+            'job_title'  => trim($_POST['job_title'] ?? '') ?: null,
+            'avatar_url' => trim($_POST['avatar_url'] ?? '') ?: null,
         ];
 
-        if ($this->model->update($id, $data)) {
-            header('Location: /public/index.php?controller=speaker&action=index');
-            exit;
-        }
+        $this->model->update($id, $data);
+        header('Location: ' . route('speaker'));
+        exit;
     }
 
     public function delete(?int $id): void
     {
-        if ($id && $this->model->delete($id)) {
-            header('Location: /public/index.php?controller=speaker&action=index');
-            exit;
+        if ($id) {
+            $this->model->delete($id);
         }
+        header('Location: ' . route('speaker'));
+        exit;
     }
 }
