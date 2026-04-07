@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Room Management - Conference Scheduler</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#0b0f10",
+                        "tertiary-dim": "#51516c",
+                        "on-tertiary": "#fbf7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#566166",
+                        "tertiary-container": "#d9d7f8",
+                        "primary-fixed": "#dae2fd",
+                        "secondary": "#5d5f65",
+                        "primary-dim": "#4a5268",
+                        "on-background": "#2a3439",
+                        "surface-container": "#e8eff3",
+                        "secondary-fixed": "#e1e2e9",
+                        "on-secondary-container": "#505257",
+                        "surface-variant": "#d9e4ea",
+                        "surface-container-highest": "#d9e4ea",
+                        "on-secondary": "#f8f8ff",
+                        "on-primary-container": "#4a5167",
+                        "on-tertiary-fixed": "#373851",
+                        "secondary-container": "#e1e2e9",
+                        "on-primary": "#f7f7ff",
+                        "on-secondary-fixed": "#3d3f45",
+                        "error": "#9f403d",
+                        "tertiary-fixed": "#d9d7f8",
+                        "surface-container-high": "#e1e9ee",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#dae2fd",
+                        "on-tertiary-container": "#4a4a65",
+                        "on-tertiary-fixed-variant": "#54546f",
+                        "surface-dim": "#cfdce3",
+                        "primary": "#565e74",
+                        "surface-container-low": "#f0f4f7",
+                        "surface-bright": "#f7f9fb",
+                        "outline": "#717c82",
+                        "surface": "#f7f9fb",
+                        "on-error-container": "#752121",
+                        "on-secondary-fixed-variant": "#595b61",
+                        "outline-variant": "#a9b4b9",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#373f54",
+                        "inverse-primary": "#dae2fd",
+                        "secondary-fixed-dim": "#d3d4db",
+                        "on-primary-fixed-variant": "#535b71",
+                        "inverse-on-surface": "#9a9d9f",
+                        "secondary-dim": "#515359",
+                        "error-container": "#fe8983",
+                        "tertiary-fixed-dim": "#cbc9e9",
+                        "on-error": "#fff7f6",
+                        "error-dim": "#4e0309",
+                        "on-surface": "#2a3439",
+                        "tertiary": "#5d5d78"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #2a3439;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+    </head>
+    <body
+        class="bg-surface selection:bg-primary-container selection:text-on-primary-container">
+        <!-- SideNavBar -->
+        <aside
+            class="h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-full py-8 px-4 z-50">
+            <div class="mb-10 px-4">
+                <h1
+                    class="font-manrope text-xl font-bold text-slate-800 dark:text-slate-100">Scheduler</h1>
+                <p
+                    class="font-manrope text-xs font-medium tracking-tight text-slate-500 uppercase">Management
+                    Portal</p>
+            </div>
+            <nav class="flex-1 space-y-2">
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm font-medium tracking-tight rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="dashboard">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm font-medium tracking-tight rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="event">event</span>
+                    <span>Conferences</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm font-medium tracking-tight rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="schedule">schedule</span>
+                    <span>Sessions</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 border-l-4 border-slate-600 dark:border-slate-400 text-slate-900 dark:text-white font-semibold pl-4 transition-all bg-slate-200/30 dark:bg-slate-800/40 font-manrope text-sm tracking-tight"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="meeting_room"
+                        style="font-variation-settings: 'FILL' 1;">meeting_room</span>
+                    <span>Rooms</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm font-medium tracking-tight rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="groups">groups</span>
+                    <span>Speakers</span>
+                </a>
+            </nav>
+            <div
+                class="mt-auto px-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+                        <img alt="User profile"
+                            data-alt="professional portrait of a senior event coordinator with a friendly expression in a modern office environment"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvjzAo5jkhcRhIUW5IZdr0L16oyWdgOCndOx0PsFZetHT5YgrDYz3py5cLgH0_RpLvGk2RTbg8EH4KMltViFxg3o3ZM9Fss2FGVymh-RWbdLVLccKHVyRRZVNG0o8PH5HmTTcpNh9w19x82XinQ5TeMr_Qlmxhw5q6E2fm6BfYB2U4toCzOvsdrr1GpI2GVuLM8w92U_ItG9eRvPu_w20z2V41Yn_YH98ee-C3DU9rH9FIJhlii9a2-q9ADPCEuUpFXQ_PSHQ-iNaU" />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p
+                            class="text-sm font-semibold text-slate-900 dark:text-white truncate">Alex
+                            Rivera</p>
+                        <p class="text-xs text-slate-500 truncate">Admin</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- TopNavBar -->
+        <header
+            class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 z-40 shadow-sm dark:shadow-none">
+            <div class="flex items-center gap-4 flex-1">
+                <div class="relative w-full max-w-md group">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                    <input
+                        class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-slate-400/20 text-sm font-manrope placeholder:text-slate-400 transition-all"
+                        placeholder="Search rooms, locations, or capacity..."
+                        type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button
+                    class="text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 transition-colors">
+                    <span class="material-symbols-outlined"
+                        data-icon="notifications">notifications</span>
+                </button>
+                <button
+                    class="text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 transition-colors">
+                    <span class="material-symbols-outlined"
+                        data-icon="settings">settings</span>
+                </button>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+            <!-- Header Section with Asymmetrical Layout -->
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div class="max-w-2xl">
+                    <p
+                        class="text-on-surface-variant font-label text-sm uppercase tracking-widest mb-2">Resource
+                        Allocation</p>
+                    <h2
+                        class="text-4xl font-headline font-extrabold text-on-surface tracking-tight leading-tight">Room
+                        Management</h2>
+                    <p
+                        class="mt-4 text-on-surface-variant font-body leading-relaxed max-w-lg">
+                        Configure and manage physical conference spaces. Define
+                        venue capacities, track architectural assets, and
+                        organize logistical placement across the event campus.
+                    </p>
+                </div>
+                <button
+                    class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-lg font-headline font-semibold text-sm hover:opacity-90 transition-opacity shadow-sm bg-gradient-to-br from-primary to-primary-dim">
+                    <span class="material-symbols-outlined text-lg"
+                        data-icon="add">add</span>
+                    Add New Room
+                </button>
+            </div>
+            <!-- Room Ledger (The Data Table) -->
+            <div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low">
+                            <th
+                                class="py-5 px-8 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">ID</th>
+                            <th
+                                class="py-5 px-6 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Name</th>
+                            <th
+                                class="py-5 px-6 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Capacity</th>
+                            <th
+                                class="py-5 px-6 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Location</th>
+                            <th
+                                class="py-5 px-6 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Created
+                                At</th>
+                            <th
+                                class="py-5 px-8 font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y-0">
+                        <!-- Row 1 -->
+                        <tr
+                            class="group hover:bg-surface-container-high transition-colors">
+                            <td
+                                class="py-6 px-8 text-sm font-label text-on-surface-variant">RM-001</td>
+                            <td class="py-6 px-6">
+                                <span
+                                    class="font-headline font-bold text-on-surface">The
+                                    Grand Atrium</span>
+                            </td>
+                            <td class="py-6 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-sm"
+                                        data-icon="person">person</span>
+                                    <span
+                                        class="font-body text-sm text-on-surface">1,200</span>
+                                </div>
+                            </td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">East
+                                Wing, Floor 1</td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Oct
+                                12, 2023</td>
+                            <td class="py-6 px-8 text-right space-x-2">
+                                <button
+                                    class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="edit">edit</span>
+                                </button>
+                                <button
+                                    class="p-2 text-slate-400 hover:text-error transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="delete">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr
+                            class="group hover:bg-surface-container-high transition-colors bg-white/50">
+                            <td
+                                class="py-6 px-8 text-sm font-label text-on-surface-variant">RM-002</td>
+                            <td class="py-6 px-6">
+                                <span
+                                    class="font-headline font-bold text-on-surface">Executive
+                                    Suite B</span>
+                            </td>
+                            <td class="py-6 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-sm"
+                                        data-icon="person">person</span>
+                                    <span
+                                        class="font-body text-sm text-on-surface">45</span>
+                                </div>
+                            </td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">West
+                                Tower, Floor 8</td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Nov
+                                04, 2023</td>
+                            <td class="py-6 px-8 text-right space-x-2">
+                                <button
+                                    class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="edit">edit</span>
+                                </button>
+                                <button
+                                    class="p-2 text-slate-400 hover:text-error transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="delete">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr
+                            class="group hover:bg-surface-container-high transition-colors">
+                            <td
+                                class="py-6 px-8 text-sm font-label text-on-surface-variant">RM-003</td>
+                            <td class="py-6 px-6">
+                                <span
+                                    class="font-headline font-bold text-on-surface">Innovation
+                                    Lab 4</span>
+                            </td>
+                            <td class="py-6 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-sm"
+                                        data-icon="person">person</span>
+                                    <span
+                                        class="font-body text-sm text-on-surface">150</span>
+                                </div>
+                            </td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">North
+                                Plaza, Ground</td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Jan
+                                15, 2024</td>
+                            <td class="py-6 px-8 text-right space-x-2">
+                                <button
+                                    class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="edit">edit</span>
+                                </button>
+                                <button
+                                    class="p-2 text-slate-400 hover:text-error transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="delete">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr
+                            class="group hover:bg-surface-container-high transition-colors bg-white/50">
+                            <td
+                                class="py-6 px-8 text-sm font-label text-on-surface-variant">RM-004</td>
+                            <td class="py-6 px-6">
+                                <span
+                                    class="font-headline font-bold text-on-surface">Skyline
+                                    Hall</span>
+                            </td>
+                            <td class="py-6 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-sm"
+                                        data-icon="person">person</span>
+                                    <span
+                                        class="font-body text-sm text-on-surface">450</span>
+                                </div>
+                            </td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Roof
+                                Deck, South</td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Feb
+                                22, 2024</td>
+                            <td class="py-6 px-8 text-right space-x-2">
+                                <button
+                                    class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="edit">edit</span>
+                                </button>
+                                <button
+                                    class="p-2 text-slate-400 hover:text-error transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="delete">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr
+                            class="group hover:bg-surface-container-high transition-colors">
+                            <td
+                                class="py-6 px-8 text-sm font-label text-on-surface-variant">RM-005</td>
+                            <td class="py-6 px-6">
+                                <span
+                                    class="font-headline font-bold text-on-surface">Zen
+                                    Garden Lounge</span>
+                            </td>
+                            <td class="py-6 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-sm"
+                                        data-icon="person">person</span>
+                                    <span
+                                        class="font-body text-sm text-on-surface">80</span>
+                                </div>
+                            </td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Garden
+                                Annex</td>
+                            <td
+                                class="py-6 px-6 font-body text-sm text-on-surface-variant">Mar
+                                01, 2024</td>
+                            <td class="py-6 px-8 text-right space-x-2">
+                                <button
+                                    class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="edit">edit</span>
+                                </button>
+                                <button
+                                    class="p-2 text-slate-400 hover:text-error transition-colors rounded-lg hover:bg-white">
+                                    <span
+                                        class="material-symbols-outlined text-xl"
+                                        data-icon="delete">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Table Footer / Pagination Meta -->
+            <div class="mt-8 flex items-center justify-between px-2">
+                <p class="text-xs font-label text-on-surface-variant">
+                    Showing <span class="font-bold text-on-surface">1 - 5</span>
+                    of 24 results
+                </p>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="text-xs font-semibold text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors disabled:opacity-30"
+                        disabled>
+                        <span
+                            class="material-symbols-outlined text-base">chevron_left</span>
+                        Previous
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary text-xs font-bold">1</span>
+                        <span
+                            class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xs font-medium cursor-pointer transition-colors">2</span>
+                        <span
+                            class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xs font-medium cursor-pointer transition-colors">3</span>
+                        <span class="text-on-surface-variant">...</span>
+                        <span
+                            class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xs font-medium cursor-pointer transition-colors">5</span>
+                    </div>
+                    <button
+                        class="text-xs font-semibold text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
+                        Next
+                        <span
+                            class="material-symbols-outlined text-base">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Bottom Insights Bento (Editorial Decoration) -->
+            <div class="grid grid-cols-12 gap-8 mt-20">
+                <div
+                    class="col-span-12 md:col-span-7 bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3
+                            class="text-lg font-headline font-bold text-on-surface mb-2">Space
+                            Utilization Report</h3>
+                        <p
+                            class="text-sm text-on-surface-variant font-body max-w-sm">The
+                            Grand Atrium currently accounts for 40% of the total
+                            venue capacity across the East Wing.</p>
+                        <div class="mt-6 flex items-baseline gap-2">
+                            <span
+                                class="text-3xl font-headline font-extrabold text-primary">84%</span>
+                            <span
+                                class="text-xs font-label text-on-surface-variant uppercase">Average
+                                Load</span>
+                        </div>
+                    </div>
+                    <!-- Abstract Design Element -->
+                    <div
+                        class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+                </div>
+                <div
+                    class="col-span-12 md:col-span-5 bg-surface-container-highest p-8 rounded-xl flex flex-col justify-center border border-white/20">
+                    <h3
+                        class="text-lg font-headline font-bold text-on-surface mb-2">Total
+                        Capacity</h3>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="flex-1 bg-white h-2 rounded-full overflow-hidden">
+                            <div
+                                class="bg-primary h-full w-3/4 rounded-full"></div>
+                        </div>
+                        <span
+                            class="text-xl font-headline font-bold text-on-surface">5,840</span>
+                    </div>
+                    <p
+                        class="mt-3 text-xs font-label text-on-secondary-fixed-variant">Capacity
+                        reaches maximum threshold on conference Day 2.</p>
+                </div>
+            </div>
+        </main>
+    </body></html>

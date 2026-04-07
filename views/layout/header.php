@@ -13,7 +13,7 @@
             </button>
         </div>
         <div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
-        <a href="/public/index.php?controller=auth&action=logout" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-opacity duration-200">
+        <a href="<?= route('auth', 'logout') ?>" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-opacity duration-200">
             Logout
         </a>
     </div>

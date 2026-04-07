@@ -15,27 +15,27 @@
         $inactiveClass = "flex items-center px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors";
         ?>
 
-        <a class="<?= $currentController === 'dashboard' ? $activeClass : $inactiveClass ?>" href="/public/index.php?controller=dashboard&action=index">
+        <a class="<?= $currentController === 'dashboard' ? $activeClass : $inactiveClass ?>" href="<?= route('dashboard') ?>">
             <span class="material-symbols-outlined mr-3">dashboard</span>
             Dashboard
         </a>
 
-        <a class="<?= $currentController === 'conference' ? $activeClass : $inactiveClass ?>" href="/public/index.php?controller=conference&action=index">
+        <a class="<?= $currentController === 'conference' ? $activeClass : $inactiveClass ?>" href="<?= route('conference') ?>">
             <span class="material-symbols-outlined mr-3">event</span>
             Conferences
         </a>
 
-        <a class="<?= $currentController === 'session' ? $activeClass : $inactiveClass ?>" href="/public/index.php?controller=session&action=index">
+        <a class="<?= $currentController === 'session' ? $activeClass : $inactiveClass ?>" href="<?= route('session') ?>">
             <span class="material-symbols-outlined mr-3">calendar_view_day</span>
             Sessions
         </a>
 
-        <a class="<?= $currentController === 'room' ? $activeClass : $inactiveClass ?>" href="/public/index.php?controller=room&action=index">
+        <a class="<?= $currentController === 'room' ? $activeClass : $inactiveClass ?>" href="<?= route('room') ?>">
             <span class="material-symbols-outlined mr-3">meeting_room</span>
             Rooms
         </a>
 
-        <a class="<?= $currentController === 'speaker' ? $activeClass : $inactiveClass ?>" href="/public/index.php?controller=speaker&action=index">
+        <a class="<?= $currentController === 'speaker' ? $activeClass : $inactiveClass ?>" href="<?= route('speaker') ?>">
             <span class="material-symbols-outlined mr-3">group</span>
             Speakers
         </a>

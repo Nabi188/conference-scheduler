@@ -1,0 +1,484 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Create Session - The Editorial Architect</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet">
+        <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "secondary-fixed": "#e1e2e9",
+                        "error-dim": "#4e0309",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container-low": "#f0f4f7",
+                        "on-surface": "#2a3439",
+                        "background": "#f7f9fb",
+                        "surface-container": "#e8eff3",
+                        "secondary-dim": "#515359",
+                        "on-error-container": "#752121",
+                        "tertiary-dim": "#51516c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0b0f10",
+                        "primary-container": "#dae2fd",
+                        "tertiary": "#5d5d78",
+                        "surface-dim": "#cfdce3",
+                        "outline-variant": "#a9b4b9",
+                        "secondary-container": "#e1e2e9",
+                        "on-background": "#2a3439",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#3d3f45",
+                        "on-primary": "#f7f7ff",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "inverse-primary": "#dae2fd",
+                        "on-primary-container": "#4a5167",
+                        "tertiary-fixed-dim": "#cbc9e9",
+                        "outline": "#717c82",
+                        "surface-container-highest": "#d9e4ea",
+                        "error": "#9f403d",
+                        "on-secondary-container": "#505257",
+                        "tertiary-container": "#d9d7f8",
+                        "on-tertiary-fixed": "#373851",
+                        "on-error": "#fff7f6",
+                        "on-tertiary": "#fbf7ff",
+                        "tertiary-fixed": "#d9d7f8",
+                        "secondary-fixed-dim": "#d3d4db",
+                        "surface-container-high": "#e1e9ee",
+                        "secondary": "#5d5f65",
+                        "primary": "#565e74",
+                        "surface-tint": "#565e74",
+                        "on-secondary-fixed-variant": "#595b61",
+                        "on-surface-variant": "#566166",
+                        "on-tertiary-fixed-variant": "#54546f",
+                        "on-primary-fixed-variant": "#535b71",
+                        "primary-dim": "#4a5268",
+                        "surface": "#f7f9fb",
+                        "error-container": "#fe8983",
+                        "on-secondary": "#f8f8ff",
+                        "on-tertiary-container": "#4a4a65",
+                        "on-primary-fixed": "#373f54",
+                        "surface-variant": "#d9e4ea"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                },
+                "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                }
+              },
+            },
+          }
+        </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .glass-effect {
+                background-color: rgba(247, 249, 251, 0.8);
+                backdrop-filter: blur(20px);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-surface font-body min-h-screen flex overflow-x-hidden">
+        <!-- SideNavBar -->
+        <aside
+            class="h-screen w-64 fixed left-0 top-0 bg-[#f0f4f7] dark:bg-slate-950 flex flex-col py-8 z-50">
+            <div class="px-8 mb-8">
+                <h1
+                    class="text-xl font-bold text-slate-900 dark:text-white font-headline tracking-tight"
+                    style>The Curator</h1>
+                <p class="text-xs text-[#565e74] dark:text-slate-400 font-label"
+                    style>Admin Portal</p>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a
+                    class="flex items-center gap-3 px-8 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined"
+                        style>dashboard</span>
+                    Dashboard
+                </a>
+                <a
+                    class="flex items-center gap-3 px-8 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined" style>event</span>
+                    Conferences
+                </a>
+                <a
+                    class="flex items-center gap-3 px-8 py-3 text-slate-900 dark:text-white font-semibold border-l-4 border-[#565e74] pl-4 transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined"
+                        style>calendar_today</span>
+                    Sessions
+                </a>
+                <a
+                    class="flex items-center gap-3 px-8 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined"
+                        style>meeting_room</span>
+                    Rooms
+                </a>
+                <a
+                    class="flex items-center gap-3 px-8 py-3 text-slate-500 dark:text-slate-400 pl-5 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined" style>group</span>
+                    Speakers
+                </a>
+            </nav>
+            <div class="mt-auto px-8 space-y-4">
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined"
+                        style>help_outline</span>
+                    Support
+                </a>
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all font-manrope tracking-tight"
+                    href="#" style>
+                    <span class="material-symbols-outlined" style>logout</span>
+                    Sign Out
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="flex-1 ml-64 min-h-screen relative">
+            <!-- TopNavBar -->
+            <header
+                class="w-full h-16 sticky top-0 z-40 bg-[#f7f9fb]/80 backdrop-blur-xl flex justify-between items-center px-8">
+                <div class="flex items-center gap-4">
+                    <span class="text-slate-500 text-sm font-label" style>The
+                        Editorial Architect</span>
+                    <span class="text-outline-variant" style>/</span>
+                    <span class="text-slate-900 font-semibold font-label"
+                        style>Create New Session</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="relative group">
+                        <span
+                            class="material-symbols-outlined text-slate-600 cursor-pointer"
+                            style>notifications</span>
+                    </div>
+                    <div class="relative group">
+                        <span
+                            class="material-symbols-outlined text-slate-600 cursor-pointer"
+                            style>settings</span>
+                    </div>
+                    <div
+                        class="h-8 w-8 rounded-full overflow-hidden bg-surface-container-highest">
+                        <img alt="Administrator profile"
+                            class="w-full h-full object-cover"
+                            data-alt="professional portrait of a high-end digital architect in a minimalist workspace"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfjDi1ncnG4DeZu9_fePRMTLEjHJoY6Cwk3DrTfqX0_oBAfyAZn2qqqaAbqbIn2iGI1HSg0SYzS9Qmt3WB_TAHwUt7FTT5krRCqjpb31N3_sSF8lDx61Eexv5UNLqSdxvMDsguSv38d4DYN2hXxOjap_IdnT4HC4GV6Ji2k5igMKsTF_p_Sv0WjqMfRhhsoBJCROFiuHxbGmyA_m6fv9JF56ZafOVoXUYOjFSU8pTNF7a7v1G0seKoJGF4OZjSVlzLVZtjSPFBa9gR"
+                            style>
+                    </div>
+                </div>
+            </header>
+            <!-- Page Canvas -->
+            <div class="max-w-6xl mx-auto px-12 py-16">
+                <div class="mb-12">
+                    <h2
+                        class="text-[3.5rem] font-extrabold font-headline leading-none tracking-tighter text-on-surface mb-4"
+                        style>New Session</h2>
+                    <p
+                        class="text-on-surface-variant font-label text-lg max-w-2xl"
+                        style>Orchestrate the flow of ideas. Define the
+                        schedule, location, and voice for this curated session
+                        experience.</p>
+                </div>
+                <!-- Asymmetric Grid Layout -->
+                <div class="grid grid-cols-12 gap-x-12 gap-y-12 items-start">
+                    <!-- Main Form Column -->
+                    <div class="col-span-8">
+                        <div
+                            class="bg-surface-container-lowest p-10 rounded-xl shadow-[0px_12px_32px_rgba(42,52,57,0.04)]">
+                            <form action="#" class="space-y-10" method="POST">
+                                <!-- Session Title -->
+                                <div class="space-y-2">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                        for="title" style>Session Title</label>
+                                    <input
+                                        class="w-full bg-transparent border-0 border-b-2 border-surface-container text-2xl font-headline font-bold focus:ring-0 focus:border-primary transition-all py-4 placeholder:text-surface-container-highest"
+                                        id="title" name="title"
+                                        placeholder="Enter session title..."
+                                        type="text">
+                                </div>
+                                <!-- Dual Dropdowns Row -->
+                                <div class="grid grid-cols-2 gap-8">
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="conference_id"
+                                            style>Conference</label>
+                                        <div class="relative">
+                                            <select
+                                                class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+                                                id="conference_id"
+                                                name="conference_id">
+                                                <option disabled selected
+                                                    value>Select
+                                                    conference</option>
+                                                <option value="1">Global Tech
+                                                    Summit 2024</option>
+                                                <option value="2">AI Foundations
+                                                    Conference</option>
+                                                <option value="3">Sustainable
+                                                    Design Forum</option>
+                                            </select>
+                                            <span
+                                                class="material-symbols-outlined absolute right-4 top-4 pointer-events-none text-outline"
+                                                style>expand_more</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="speaker_id" style>Keynote
+                                            Speaker</label>
+                                        <div class="relative">
+                                            <select
+                                                class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+                                                id="speaker_id"
+                                                name="speaker_id">
+                                                <option disabled selected
+                                                    value>Assign
+                                                    speaker</option>
+                                                <option value="1">Dr. Aris
+                                                    Thorne</option>
+                                                <option value="2">Elena
+                                                    Volkov</option>
+                                                <option value="3">Marcus
+                                                    Chen</option>
+                                            </select>
+                                            <span
+                                                class="material-symbols-outlined absolute right-4 top-4 pointer-events-none text-outline"
+                                                style>expand_more</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <div class="space-y-2">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                        for="description" style>Editorial
+                                        Description</label>
+                                    <textarea
+                                        class="w-full bg-surface-container-low border-0 rounded-xl p-6 font-body leading-relaxed focus:ring-2 focus:ring-primary"
+                                        id="description" name="description"
+                                        placeholder="Synthesize the core message and objectives of this session..."
+                                        rows="5"></textarea>
+                                </div>
+                                <!-- Meta Details Grid -->
+                                <div class="grid grid-cols-2 gap-8 pt-4">
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="room_id" style>Room</label>
+                                        <div class="relative">
+                                            <select
+                                                class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+                                                id="room_id" name="room_id">
+                                                <option disabled selected
+                                                    value>Select venue</option>
+                                                <option value="1">Grand Ballroom
+                                                    Alpha</option>
+                                                <option value="2">Terrace
+                                                    Pavilion</option>
+                                                <option value="3">Glass
+                                                    Library</option>
+                                            </select>
+                                            <span
+                                                class="material-symbols-outlined absolute right-4 top-4 pointer-events-none text-outline"
+                                                style>expand_more</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="status" style>Operational
+                                            Status</label>
+                                        <div class="relative">
+                                            <select
+                                                class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+                                                id="status" name="status">
+                                                <option
+                                                    value="scheduled">Scheduled</option>
+                                                <option
+                                                    value="ongoing">Ongoing</option>
+                                                <option
+                                                    value="done">Done</option>
+                                                <option
+                                                    value="cancelled">Cancelled</option>
+                                            </select>
+                                            <span
+                                                class="material-symbols-outlined absolute right-4 top-4 pointer-events-none text-outline"
+                                                style>expand_more</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Timestamps -->
+                                <div class="grid grid-cols-2 gap-8 pt-4">
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="start_time" style>Start
+                                            Time</label>
+                                        <input
+                                            class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary"
+                                            id="start_time" name="start_time"
+                                            type="datetime-local">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label
+                                            class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label"
+                                            for="end_time" style>End
+                                            Time</label>
+                                        <input
+                                            class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary"
+                                            id="end_time" name="end_time"
+                                            type="datetime-local">
+                                    </div>
+                                </div>
+                                <!-- Form Actions -->
+                                <div
+                                    class="flex items-center justify-end gap-6 pt-12">
+                                    <button
+                                        class="text-primary font-semibold hover:underline px-4"
+                                        type="button" style>Cancel</button>
+                                    <button
+                                        class="bg-gradient-to-br from-primary to-primary-dim text-white px-10 py-4 rounded-lg font-bold shadow-lg active:scale-95 transition-transform"
+                                        type="submit" style>
+                                        Finalize Session
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Auxiliary Information Column -->
+                    <div class="col-span-4 space-y-8">
+                        <!-- Glassmorphic Preview Card -->
+                        <div
+                            class="glass-effect rounded-xl p-8 border border-white/20 shadow-xl overflow-hidden relative group">
+                            <div
+                                class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                            <h3
+                                class="text-xs font-bold uppercase tracking-widest text-primary mb-6"
+                                style>Scheduling Insights</h3>
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded bg-primary-container flex items-center justify-center shrink-0">
+                                        <span
+                                            class="material-symbols-outlined text-on-primary-container text-sm"
+                                            style>schedule</span>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-xs font-bold text-on-surface"
+                                            style>Peak Audience</p>
+                                        <p
+                                            class="text-sm text-on-surface-variant"
+                                            style>Optimal slot for engagement is
+                                            10:00 AM — 2:00 PM.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded bg-tertiary-container flex items-center justify-center shrink-0">
+                                        <span
+                                            class="material-symbols-outlined text-on-tertiary-container text-sm"
+                                            style>notifications_active</span>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-xs font-bold text-on-surface"
+                                            style>Smart Alerts</p>
+                                        <p
+                                            class="text-sm text-on-surface-variant"
+                                            style>Notifications will be sent to
+                                            240 confirmed attendees.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Room Visualization Card -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(42,52,57,0.04)]">
+                            <div class="h-48 w-full relative">
+                                <img alt="Venue view"
+                                    class="w-full h-full object-cover"
+                                    data-alt="a bright modern auditorium with light wood finishes, large windows, and contemporary architectural lighting in a minimal slate tone"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxhfTZVLJkItshhAo3k3_9szETJTG_hyis4FvWh3V_sUkrSRa3w_37BPtRYOPxN_t5eRqVn_0l3yp-FN5c__jWzTaqxuzjSW1TZHQm7v2ntSHnKdFvywl2EfjwxepRpxGWFAsQ7bq9qrnVTqkIDxOYCECCmBZVaGvwEPXPDInMc_QELrLnV-JUTHLCnPtiXOPxEnot2WbIEJt_8IMMQTg7osG9Iz7qvAAG0BvMC81D5Vz8PPaU7jXDJWxTZrGzH9SBlkD_sJKOhL8d"
+                                    style>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+                                <div class="absolute bottom-4 left-6">
+                                    <p
+                                        class="text-white text-xs font-bold uppercase tracking-widest"
+                                        style>Selected Venue</p>
+                                    <p
+                                        class="text-white font-headline font-bold"
+                                        style>Grand Ballroom Alpha</p>
+                                </div>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div
+                                    class="flex justify-between items-center text-sm">
+                                    <span class="text-on-surface-variant"
+                                        style>Capacity</span>
+                                    <span class="font-bold text-on-surface"
+                                        style>450 Seats</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center text-sm">
+                                    <span class="text-on-surface-variant"
+                                        style>AV Setup</span>
+                                    <span class="font-bold text-on-surface"
+                                        style>4K Laser + Surround</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Editorial Tip -->
+                        <div
+                            class="bg-surface-container-low p-6 rounded-lg border-l-4 border-primary">
+                            <p class="text-sm font-label text-on-surface italic"
+                                style>"The title is the gateway. Use authoritative, evocative language that promises transformation, not just information."</p>
+                            <p
+                                class="text-[10px] uppercase font-bold text-outline mt-3"
+                                style>— Editorial Guideline #42</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Aesthetic Elements -->
+            <div
+                class="fixed top-0 right-0 -z-10 w-1/2 h-full opacity-5 pointer-events-none">
+                <svg class="w-full h-full" viewBox="0 0 400 400"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M45.7,-78.3C58.9,-71.1,69.1,-58.5,76.5,-44.7C83.9,-30.9,88.4,-15.5,88.4,0C88.4,15.5,83.9,30.9,76.5,44.7C69.1,58.5,58.9,71.1,45.7,78.3C32.5,85.5,16.2,87.4,0,87.4C-16.2,87.4,-32.5,85.5,-45.7,78.3C-58.9,71.1,-69.1,58.5,-76.5,44.7C-83.9,30.9,-88.4,15.5,-88.4,0C-88.4,-15.5,-83.9,-30.9,-76.5,-44.7C-69.1,-58.5,-58.9,-71.1,-45.7,-78.3C-32.5,-85.5,-16.2,-87.4,0,-87.4C16.2,-87.4,32.5,-85.5,45.7,-78.3Z"
+                        fill="#565e74"
+                        transform="translate(300 100) scale(1.5)"></path>
+                </svg>
+            </div>
+        </main>
+    </body></html>

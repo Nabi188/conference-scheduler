@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#0b0f10",
+                        "tertiary-dim": "#51516c",
+                        "on-tertiary": "#fbf7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#566166",
+                        "tertiary-container": "#d9d7f8",
+                        "primary-fixed": "#dae2fd",
+                        "secondary": "#5d5f65",
+                        "primary-dim": "#4a5268",
+                        "on-background": "#2a3439",
+                        "surface-container": "#e8eff3",
+                        "secondary-container": "#e1e2e9",
+                        "on-secondary": "#f8f8ff",
+                        "on-primary-container": "#4a5167",
+                        "surface-container-highest": "#d9e4ea",
+                        "on-primary": "#f7f7ff",
+                        "error": "#9f403d",
+                        "surface-container-high": "#e1e9ee",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#dae2fd",
+                        "primary": "#565e74",
+                        "surface-container-low": "#f0f4f7",
+                        "surface-bright": "#f7f9fb",
+                        "outline": "#717c82",
+                        "surface": "#f7f9fb",
+                        "outline-variant": "#a9b4b9",
+                        "background": "#f7f9fb",
+                        "on-surface": "#2a3439",
+                        "tertiary": "#5d5d78"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+    </head>
+    <body class="bg-surface text-on-surface">
+        <!-- SideNavBar Anchor -->
+        <aside
+            class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col h-full py-8 px-4 z-50">
+            <div class="mb-10 px-4">
+                <h1
+                    class="font-manrope text-xl font-bold text-slate-800">Scheduler</h1>
+                <p
+                    class="text-xs font-manrope text-slate-500 font-medium tracking-tight">Management
+                    Portal</p>
+            </div>
+            <nav class="flex-1 space-y-2">
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 pl-5 hover:text-slate-700 hover:bg-slate-200/50 transition-all rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="dashboard">dashboard</span>
+                    <span
+                        class="font-manrope text-sm font-medium tracking-tight">Dashboard</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 pl-5 hover:text-slate-700 hover:bg-slate-200/50 transition-all rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="event">event</span>
+                    <span
+                        class="font-manrope text-sm font-medium tracking-tight">Conferences</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 pl-5 hover:text-slate-700 hover:bg-slate-200/50 transition-all rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="schedule">schedule</span>
+                    <span
+                        class="font-manrope text-sm font-medium tracking-tight">Sessions</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 border-l-4 border-slate-600 text-slate-900 font-semibold pl-4 transition-all bg-slate-200/30 rounded-r-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="meeting_room">meeting_room</span>
+                    <span
+                        class="font-manrope text-sm font-medium tracking-tight">Rooms</span>
+                </a>
+                <a
+                    class="flex items-center gap-3 py-3 text-slate-500 pl-5 hover:text-slate-700 hover:bg-slate-200/50 transition-all rounded-lg"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        data-icon="groups">groups</span>
+                    <span
+                        class="font-manrope text-sm font-medium tracking-tight">Speakers</span>
+                </a>
+            </nav>
+        </aside>
+        <!-- TopNavBar Anchor -->
+        <header
+            class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 z-40 shadow-sm">
+            <div class="flex items-center flex-1 max-w-xl">
+                <div class="relative w-full group">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                    <input
+                        class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-slate-400/20 transition-all outline-none"
+                        placeholder="Search resources..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4 ml-8">
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+                    <span class="material-symbols-outlined"
+                        data-icon="notifications">notifications</span>
+                </button>
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+                    <span class="material-symbols-outlined"
+                        data-icon="settings">settings</span>
+                </button>
+                <div
+                    class="w-8 h-8 rounded-full overflow-hidden bg-slate-200 ml-2">
+                    <img class="w-full h-full object-cover"
+                        data-alt="professional profile portrait of a male administrator in business attire with soft natural lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMg8GEk9UFGGuXKkVBNg1cnAF56BgnZGcOd2BjNfGxNAIVXQPAsPKnZBCi-HEogkNUgx0eCxk7XeZBq-ayy3SLLVvwh4I9PlkaAoIHkl6rxK9FMqxCkP5x7vKT--mNZQs1LswmOJ7oHwwHePOV6oKeU3G5cT3aOQiquOLXyXhCc9JuvOSzXyL245ui2tAOG7WBrG3X1fghMAiGU4ZyKUvjt2eYFphvXo71DnK-mAtBUmX1O9gqdTt7O29CpKUbZByQO_fR3hPVXteS" />
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Canvas -->
+        <main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+            <div class="max-w-4xl mx-auto">
+                <!-- Breadcrumb and Header -->
+                <div class="mb-10">
+                    <nav
+                        class="flex gap-2 text-on-surface-variant text-sm mb-4">
+                        <a class="hover:text-primary transition-colors"
+                            href="#">Rooms</a>
+                        <span class="text-outline-variant">/</span>
+                        <span class="text-on-surface font-medium">Edit
+                            Room</span>
+                    </nav>
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <h2
+                                class="text-3xl font-bold font-headline tracking-tight text-on-surface mb-2">Room
+                                Details</h2>
+                            <p class="text-on-surface-variant text-sm">Update
+                                the configuration and capacity for the selected
+                                venue space.</p>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 px-4 py-1.5 bg-primary-container text-on-primary-container rounded-full text-xs font-semibold">
+                            <span class="material-symbols-outlined text-[16px]"
+                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Active Location
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column: Form -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <section
+                            class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+                            <form class="space-y-6">
+                                <!-- Read-only ID -->
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Room
+                                            ID</label>
+                                        <div
+                                            class="px-4 py-3 bg-surface-container-low rounded-lg text-on-surface-variant font-mono text-sm border border-outline-variant/10">
+                                            RM-204-DELUXE
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider"
+                                            for="room-name">Name</label>
+                                        <input
+                                            class="px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-on-surface font-medium transition-all"
+                                            id="room-name" type="text"
+                                            value="Grand Ballroom A" />
+                                    </div>
+                                </div>
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider"
+                                            for="capacity">Capacity
+                                            (Persons)</label>
+                                        <div class="relative">
+                                            <input
+                                                class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-on-surface font-medium transition-all"
+                                                id="capacity" type="number"
+                                                value="450" />
+                                            <span
+                                                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">groups</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label
+                                            class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider"
+                                            for="location">Location /
+                                            Wing</label>
+                                        <select
+                                            class="px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-on-surface font-medium transition-all appearance-none"
+                                            id="location">
+                                            <option>North Wing - Level
+                                                2</option>
+                                            <option selected>South Wing - Level
+                                                1</option>
+                                            <option>East Wing - Level 3</option>
+                                            <option>West Wing - Level 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label
+                                        class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider"
+                                        for="description">Description</label>
+                                    <textarea
+                                        class="px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-on-surface font-medium transition-all resize-none"
+                                        id="description"
+                                        rows="5">Our flagship ballroom featuring acoustic wall paneling, ceiling-integrated Bose surround sound, and floor-to-ceiling windows overlooking the central atrium. Ideal for keynote presentations and large gala dinners.</textarea>
+                                </div>
+                                <!-- Actions -->
+                                <div
+                                    class="pt-6 flex items-center justify-end gap-4 border-t border-surface-container">
+                                    <button
+                                        class="px-6 py-2.5 text-on-surface font-semibold text-sm hover:bg-surface-container-high rounded-lg transition-colors"
+                                        type="button">
+                                        Cancel
+                                    </button>
+                                    <button
+                                        class="px-8 py-2.5 bg-gradient-to-br from-primary to-primary-dim text-on-primary font-semibold text-sm rounded-lg shadow-md hover:opacity-90 transition-all flex items-center gap-2"
+                                        type="submit">
+                                        <span
+                                            class="material-symbols-outlined text-[18px]">save</span>
+                                        Update Room
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                    <!-- Right Column: Contextual Info -->
+                    <div class="space-y-8">
+                        <!-- Preview Card -->
+                        <div
+                            class="bg-surface-container-high rounded-xl overflow-hidden shadow-sm group">
+                            <div class="h-48 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="modern empty conference room with grey carpet dark wooden table and large window wall showing urban city view"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuALleW3DSXEja5ari3_smRGTrIukK8dNn7yEl9q1dk042S6v3jjU2ucpPjQq-EO_EsE1b4Sk3wfi-Xm34DzSC9bQRJ_VcTcHNoiE_K4Qhpm2Zc2vtWEQLG8PP-3pMQhjqZdiCP6cnIydWMhsqU4uf5zBnHM0njvS1IlzV9P7dWAfc275mGigLQLPGUowv6OTtQgMHjl6Bar2PKOGFom3EovP933j2-gcwNUGSwrkpqnSEPXWU0VdnyMkYPT11-kJQoBkKkcYNvP9Hw3" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                                    <span
+                                        class="text-white text-xs font-bold uppercase tracking-widest bg-primary/80 px-2 py-1 rounded">Current
+                                        View</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4
+                                    class="font-headline font-bold text-on-surface mb-2">Room
+                                    Map Position</h4>
+                                <div
+                                    class="aspect-square bg-surface-container rounded-lg flex items-center justify-center overflow-hidden border border-outline-variant/20">
+                                    <img
+                                        class="w-full h-full object-cover opacity-80 grayscale"
+                                        data-alt="minimalist architectural floor plan of a conference center with highlighted room in blue"
+                                        data-location="San Francisco"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGx2Ani2KHQfjiTrRNuZyI9QCNq-4f8KNqqVPY1cN6bb6X9AlP6zTyNqpSRZZfcL6JvZ8Wj2mNPzu2h045Mlnqm1ypGhFezQFH8fm83YSrfahdqGVyA3vf7adoolc2dhgUY3nyHrzuaYzhzeEmzX_BiVG_IR38PcYa9CHDO2Ak7uRhjB9fGSr_BPr9LcUI8UGnyD1N86WheQ-lwztRJvXYK19-DTxqtvF45XmbcWAxwLYK_vy2aanoDkETPmGrQg_3yHM1oTUiBS3s" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Room Statistics -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-4">
+                            <h4
+                                class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Utilization
+                                Stats</h4>
+                            <div
+                                class="flex justify-between items-center py-2 border-b border-surface-container">
+                                <span
+                                    class="text-sm text-on-surface-variant">Upcoming
+                                    Bookings</span>
+                                <span
+                                    class="text-sm font-bold text-on-surface">12</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center py-2 border-b border-surface-container">
+                                <span
+                                    class="text-sm text-on-surface-variant">Maintenance
+                                    Health</span>
+                                <span
+                                    class="text-sm font-bold text-green-600">Excellent</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span
+                                    class="text-sm text-on-surface-variant">Last
+                                    Inspected</span>
+                                <span
+                                    class="text-sm font-bold text-on-surface">Oct
+                                    14, 2023</span>
+                            </div>
+                        </div>
+                        <!-- Helpful Tip -->
+                        <div
+                            class="p-6 bg-tertiary-container text-on-tertiary-container rounded-xl">
+                            <div class="flex gap-3">
+                                <span
+                                    class="material-symbols-outlined text-tertiary">lightbulb</span>
+                                <div>
+                                    <p class="text-sm font-bold mb-1">Capacity
+                                        Policy</p>
+                                    <p
+                                        class="text-xs leading-relaxed opacity-80">Reducing
+                                        capacity below 400 will flag 2 existing
+                                        conference sessions for venue
+                                        reassessment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body></html>

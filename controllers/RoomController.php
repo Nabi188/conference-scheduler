@@ -30,7 +30,7 @@ class RoomController
         ];
 
         if ($this->model->create($data)) {
-            header('Location: /public/index.php?controller=room&action=index');
+            header('Location: ' . route('room'));
             exit;
         }
     }
@@ -38,7 +38,7 @@ class RoomController
     public function edit(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=room&action=index');
+            header('Location: ' . route('room'));
             exit;
         }
 
@@ -55,7 +55,7 @@ class RoomController
     public function update(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=room&action=index');
+            header('Location: ' . route('room'));
             exit;
         }
 
@@ -67,7 +67,7 @@ class RoomController
         ];
 
         if ($this->model->update($id, $data)) {
-            header('Location: /public/index.php?controller=room&action=index');
+            header('Location: ' . route('room'));
             exit;
         }
     }
@@ -75,7 +75,7 @@ class RoomController
     public function delete(?int $id): void
     {
         if ($id && $this->model->delete($id)) {
-            header('Location: /public/index.php?controller=room&action=index');
+            header('Location: ' . route('room'));
             exit;
         }
     }

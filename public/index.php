@@ -3,6 +3,7 @@ session_start();
 
 require_once dirname(__DIR__) . '/config/database.php';
 require_once dirname(__DIR__) . '/config/auth.php';
+require_once dirname(__DIR__) . '/config/helpers.php';
 
 require_once dirname(__DIR__) . '/models/Conference.php';
 require_once dirname(__DIR__) . '/models/Session.php';

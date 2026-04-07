@@ -17,7 +17,42 @@ class SessionController
 
     public function index(): void
     {
-        $sessions = $this->model->all();
+        // Get all sessions with joined data
+        $sessions = $this->model->getAll();
+
+        // Calculate stats
+        $stats = [
+            'total' => count($sessions),
+            'ongoing' => 0,
+            'today' => 0,
+            'week' => 0
+        ];
+
+        $now = new DateTime();
+        $today = $now->format('Y-m-d');
+        $weekEnd = (clone $now)->modify('+7 days')->format('Y-m-d');
+
+        foreach ($sessions as $session) {
+            $startTime = new DateTime($session['start_time']);
+            $endTime = new DateTime($session['end_time']);
+            $sessionDate = $startTime->format('Y-m-d');
+
+            // Check ongoing
+            if ($now >= $startTime && $now <= $endTime) {
+                $stats['ongoing']++;
+            }
+
+            // Check today
+            if ($sessionDate === $today) {
+                $stats['today']++;
+            }
+
+            // Check this week
+            if ($sessionDate >= $today && $sessionDate <= $weekEnd) {
+                $stats['week']++;
+            }
+        }
+
         require_once dirname(__DIR__) . '/views/sessions/index.php';
     }
 
@@ -33,17 +68,16 @@ class SessionController
     {
         $data = [
             'conference_id' => (int)($_POST['conference_id'] ?? 0),
-            'speaker_id'    => (int)($_POST['speaker_id'] ?? 0),
-            'room_id'       => (int)($_POST['room_id'] ?? 0),
+            'speaker_id'    => !empty($_POST['speaker_id']) ? (int)$_POST['speaker_id'] : null,
+            'room_id'       => !empty($_POST['room_id']) ? (int)$_POST['room_id'] : null,
             'title'         => trim($_POST['title'] ?? ''),
             'description'   => trim($_POST['description'] ?? ''),
             'start_time'    => trim($_POST['start_time'] ?? ''),
             'end_time'      => trim($_POST['end_time'] ?? ''),
-            'status'        => trim($_POST['status'] ?? 'scheduled'),
         ];
 
         if ($this->model->create($data)) {
-            header('Location: /public/index.php?controller=session&action=index');
+            header('Location: ' . route('session'));
             exit;
         }
     }
@@ -51,7 +85,7 @@ class SessionController
     public function edit(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=session&action=index');
+            header('Location: ' . route('session'));
             exit;
         }
 
@@ -71,23 +105,22 @@ class SessionController
     public function update(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=session&action=index');
+            header('Location: ' . route('session'));
             exit;
         }
 
         $data = [
             'conference_id' => (int)($_POST['conference_id'] ?? 0),
-            'speaker_id'    => (int)($_POST['speaker_id'] ?? 0),
-            'room_id'       => (int)($_POST['room_id'] ?? 0),
+            'speaker_id'    => !empty($_POST['speaker_id']) ? (int)$_POST['speaker_id'] : null,
+            'room_id'       => !empty($_POST['room_id']) ? (int)$_POST['room_id'] : null,
             'title'         => trim($_POST['title'] ?? ''),
             'description'   => trim($_POST['description'] ?? ''),
             'start_time'    => trim($_POST['start_time'] ?? ''),
             'end_time'      => trim($_POST['end_time'] ?? ''),
-            'status'        => trim($_POST['status'] ?? 'scheduled'),
         ];
 
         if ($this->model->update($id, $data)) {
-            header('Location: /public/index.php?controller=session&action=index');
+            header('Location: ' . route('session'));
             exit;
         }
     }
@@ -95,7 +128,7 @@ class SessionController
     public function delete(?int $id): void
     {
         if ($id && $this->model->delete($id)) {
-            header('Location: /public/index.php?controller=session&action=index');
+            header('Location: ' . route('session'));
             exit;
         }
     }

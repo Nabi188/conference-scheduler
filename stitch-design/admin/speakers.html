@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Speaker Management - The Curator</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+            rel="stylesheet" />
+        <!-- Material Symbols -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <!-- Tailwind CSS -->
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d9d7f8",
+                        "on-secondary": "#f8f8ff",
+                        "surface-container-highest": "#d9e4ea",
+                        "primary-dim": "#4a5268",
+                        "surface-variant": "#d9e4ea",
+                        "on-secondary-fixed": "#3d3f45",
+                        "surface-tint": "#565e74",
+                        "tertiary-dim": "#51516c",
+                        "primary": "#565e74",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5d5f65",
+                        "on-surface-variant": "#566166",
+                        "secondary-container": "#e1e2e9",
+                        "outline": "#717c82",
+                        "on-tertiary": "#fbf7ff",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-fixed-dim": "#cbc9e9",
+                        "secondary-dim": "#515359",
+                        "on-tertiary-container": "#4a4a65",
+                        "error-container": "#fe8983",
+                        "on-error": "#fff7f6",
+                        "on-tertiary-fixed-variant": "#54546f",
+                        "inverse-primary": "#dae2fd",
+                        "inverse-surface": "#0b0f10",
+                        "error": "#9f403d",
+                        "on-primary-fixed": "#373f54",
+                        "on-primary-fixed-variant": "#535b71",
+                        "tertiary-container": "#d9d7f8",
+                        "on-surface": "#2a3439",
+                        "error-dim": "#4e0309",
+                        "surface-dim": "#cfdce3",
+                        "on-primary-container": "#4a5167",
+                        "secondary-fixed-dim": "#d3d4db",
+                        "on-primary": "#f7f7ff",
+                        "secondary-fixed": "#e1e2e9",
+                        "on-secondary-container": "#505257",
+                        "outline-variant": "#a9b4b9",
+                        "surface-container-low": "#f0f4f7",
+                        "surface-container": "#e8eff3",
+                        "on-tertiary-fixed": "#373851",
+                        "background": "#f7f9fb",
+                        "surface": "#f7f9fb",
+                        "primary-fixed-dim": "#ccd4ee",
+                        "on-secondary-fixed-variant": "#595b61",
+                        "primary-container": "#dae2fd",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#752121",
+                        "surface-container-high": "#e1e9ee",
+                        "tertiary": "#5d5d78",
+                        "on-background": "#2a3439"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-manrope { font-family: 'Manrope', sans-serif; }
+    </style>
+    </head>
+    <body class="bg-surface text-on-surface">
+        <!-- TopNavBar -->
+        <nav
+            class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none flex justify-between items-center px-8 h-16 w-full">
+            <div class="flex items-center gap-8">
+                <span
+                    class="font-manrope font-bold text-lg tracking-tighter text-slate-800 dark:text-slate-100">Conference
+                    Scheduler</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden md:block">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                    <input
+                        class="bg-surface-container-low border-none rounded-lg py-1.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 w-64 font-body"
+                        placeholder="Quick search..." type="text" />
+                </div>
+                <div
+                    class="flex items-center gap-4 text-slate-600 dark:text-slate-300">
+                    <button
+                        class="material-symbols-outlined hover:text-slate-800 dark:hover:text-slate-100 transition-colors">notifications</button>
+                    <button
+                        class="material-symbols-outlined hover:text-slate-800 dark:hover:text-slate-100 transition-colors">settings</button>
+                    <div
+                        class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ml-2">
+                        <img alt="User profile"
+                            data-alt="Close-up professional headshot of a smiling man with neat hair in a business casual environment with soft focus office background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBndCdA1ixU7ZgrrcmyGmWS4PVB2gWHWxlu-ESw2WOvdxzk8Puk41VxlZJMECqM1FtIpaYtjol3LDWIFw-Yf7sACxfig4grnFmih-0B8EEk82om5vGS9Zq834l0RYq0i1NViKlolrTTXd90f7rvnibWu3mKhAaNJIuX0lWkf7-ftXpEbq8vP2hxdxguFP-QD6pf61TFTFm_yRZBqRz0XetZOUzNUtyX7fB1lqbhbdbRkHsPlGCZsiYMwUsYNBlG1RpeR55tAfjtn2Er" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- SideNavBar -->
+        <aside
+            class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col py-6 gap-2">
+            <div class="px-6 mb-8 mt-16">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-primary-dim rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined"
+                            style="font-variation-settings: 'FILL' 1;">architecture</span>
+                    </div>
+                    <div>
+                        <h2
+                            class="font-manrope font-bold text-slate-900 dark:text-slate-50 leading-tight">The
+                            Curator</h2>
+                        <p
+                            class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Conference
+                            Management</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1">
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 pl-5 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg mx-2 transition-all duration-200 ease-in-out font-manrope text-sm font-medium"
+                    href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 pl-5 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg mx-2 transition-all duration-200 ease-in-out font-manrope text-sm font-medium"
+                    href="#">
+                    <span class="material-symbols-outlined">event</span>
+                    Conferences
+                </a>
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 pl-5 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg mx-2 transition-all duration-200 ease-in-out font-manrope text-sm font-medium"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined">calendar_today</span>
+                    Sessions
+                </a>
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 pl-5 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg mx-2 transition-all duration-200 ease-in-out font-manrope text-sm font-medium"
+                    href="#">
+                    <span class="material-symbols-outlined">meeting_room</span>
+                    Rooms
+                </a>
+                <!-- Active Tab -->
+                <a
+                    class="flex items-center gap-3 text-slate-900 dark:text-white font-bold border-l-4 border-slate-600 pl-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg mx-2 transition-all duration-200 ease-in-out font-manrope text-sm"
+                    href="#">
+                    <span class="material-symbols-outlined"
+                        style="font-variation-settings: 'FILL' 1;">groups</span>
+                    Speakers
+                </a>
+            </nav>
+            <div class="px-2">
+                <a
+                    class="flex items-center gap-3 text-slate-500 dark:text-slate-400 pl-5 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out font-manrope text-sm font-medium"
+                    href="#">
+                    <span class="material-symbols-outlined">help_outline</span>
+                    Support
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+            <!-- Header & Action Row -->
+            <header
+                class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="space-y-1">
+                    <p
+                        class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-label">The
+                        Digital Curator</p>
+                    <h1
+                        class="text-4xl font-extrabold font-headline tracking-tighter text-on-surface">Speaker
+                        Roster</h1>
+                    <p
+                        class="text-on-surface-variant max-w-md text-sm leading-relaxed">Manage
+                        your keynote speakers and panelists. Track their
+                        participation status and core areas of expertise.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+                        <input
+                            class="bg-surface-container-lowest border-none rounded-xl py-3 pl-10 pr-6 text-sm shadow-sm ring-1 ring-black/[0.03] focus:ring-primary w-80 font-body"
+                            placeholder="Find by name or expertise..."
+                            type="text" />
+                    </div>
+                    <button
+                        class="bg-primary text-on-primary px-6 py-3 rounded-xl font-headline font-bold text-sm flex items-center gap-2 hover:bg-primary-dim transition-all shadow-md">
+                        <span
+                            class="material-symbols-outlined text-lg">person_add</span>
+                        Invite Speaker
+                    </button>
+                </div>
+            </header>
+            <!-- Speaker Ledger -->
+            <div
+                class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm ring-1 ring-black/[0.02]">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low"><th
+                                class="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant font-label">Speaker
+                                Profile</th>
+                            <th
+                                class="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant font-label">Company</th>
+                            <th
+                                class="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant font-label">Job
+                                Title</th>
+                            <th
+                                class="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant font-label">Joined</th>
+                            <th
+                                class="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant font-label text-right">Actions</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-surface-container">
+                        <!-- Speaker Row 1 -->
+                        <tr
+                            class="group hover:bg-surface-container-low transition-colors">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-primary/5">
+                                        <img alt="Sarah Chen"
+                                            data-alt="High-resolution professional portrait of a woman with dark hair, soft lighting, minimalist studio background"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHpFh12lb0H6wXYXE1tZY1dFtYwhqMcXYK0QF2eRRIl_gJmPJFrQWEJMmfOSE4hYf6H35ATWq72c6FPNsu4MNCKoN-oXE9O-nKMMKRVsEToY8qUO2JMoZI9vDdn_IhfFBtyT7BQRm4uT89raTcLlQuosbKS-o4X0gwEY4HwcF8ldAWwBV0ZPzZ9EF_nn4Av7e0cQXe0B5Sn1umG-UePJiO9xeZm_W4yDXQVSwF_iA9-ddQHqqZz2Iyxog2l2NUECPTGBSrd4nHKP7O" />
+                                    </div>
+                                    <div>
+                                        <h4
+                                            class="font-headline font-bold text-on-surface">Sarah
+                                            Chen</h4>
+                                        <p
+                                            class="text-xs text-on-surface-variant">sarah.c@techpulse.io</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface font-medium">TechPulse
+                                    Systems</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span class="text-sm text-on-surface">Lead Cloud
+                                    Architect</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface-variant">Oct
+                                    12, 2023</span>
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <button
+                                    class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+                            </td>
+                        </tr>
+                        <!-- Speaker Row 2 -->
+                        <tr
+                            class="group hover:bg-surface-container-low transition-colors">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-primary/5">
+                                        <img alt="Marcus Thorne"
+                                            data-alt="A man with a short beard wearing a blazer, looking directly at camera with professional soft office lighting"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ-fS_62UhrBA5iGWZTsahb5mIYmpZbAl2AwrXT5kRMrstkjCWKE7VFNwSFGBpLC5y9Q6p68dcycGmfJkdFpZMqO1-qitqQ8xDNav6W7zmtPt6Q3ov9EiP0p4F6fU0jZacAUf8QPBivZsLx4ypfNKcgIlo69_zvrsRb5JggMd7ku3A219QaBj-0Lcv0hLGCXR9RFEH7spOzQFxrQWaSm8HsaKW108LHdjyPOpbXWZJ8Iaqge06yscNlZCWuMrv-PbQ8JPUu6ZVyxtm" />
+                                    </div>
+                                    <div>
+                                        <h4
+                                            class="font-headline font-bold text-on-surface">Marcus
+                                            Thorne</h4>
+                                        <p
+                                            class="text-xs text-on-surface-variant">m.thorne@futurelogic.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface font-medium">FutureLogic
+                                    Research</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span class="text-sm text-on-surface">Ethical AI
+                                    Lead</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface-variant">Nov
+                                    05, 2023</span>
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <button
+                                    class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+                            </td>
+                        </tr>
+                        <!-- Speaker Row 3 -->
+                        <tr
+                            class="group hover:bg-surface-container-low transition-colors">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-primary/5">
+                                        <img alt="Dr. Elena Rodriguez"
+                                            data-alt="Mid-shot of a professional woman wearing glasses in a clean white laboratory or office setting with soft daylight"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiKGSgbfLkweo-ZVVyJDQ9JH08QbJFOCV3AU72EDpoXZUGehBMaUfCeARStFjY5Qfi9TmvrUhVYsGUBSioDfj61094Ql2dZe4YmKc2Rgwls1ebM4U4XE_zTu6mGxcritQmmh595OSh5Dw88QQul7uWglJcT6Ra2XVhryVOOhWSoKrHtPoh2Tf8XvkXIr1YKVE5RrD6-9VCRkJxxJYzwnXS4QR9vtvJ5uKAWibLDAjMHqrIqYJxNvexIpU7t583CRCrl9UJSvNiQlGV" />
+                                    </div>
+                                    <div>
+                                        <h4
+                                            class="font-headline font-bold text-on-surface">Elena
+                                            Rodriguez</h4>
+                                        <p
+                                            class="text-xs text-on-surface-variant">elena.rod@biotech-univ.edu</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface font-medium">State
+                                    University</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span class="text-sm text-on-surface">Professor
+                                    of Bioinformatics</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface-variant">Jan
+                                    15, 2024</span>
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <button
+                                    class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+                            </td>
+                        </tr>
+                        <!-- Speaker Row 4 -->
+                        <tr
+                            class="group hover:bg-surface-container-low transition-colors">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-primary/5">
+                                        <img alt="Jameson Blake"
+                                            data-alt="Close up portrait of a male executive in a navy suit, urban skyscraper bokeh background with cool daylight"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5YKJXKVblm35RYzuXDxA_Iww-08s2P8KvrvcX3yx90rSl8AoaYKmT0L5r2YmSyhPJU-eppjmO4Wjy6l8m1WXAcgA6pBEenKYXlIZBvOZgom1evcLpoMVB5tVRYFLUD2ikj_SaNbFXK0IYu8sehyuO_5X2IkowxoVSymoptYyLx5IPE9fBx_ltfqn4Fodh8zp0dvACJ8IUxRhflO9mJHqeVFaCjgn-17_0uX9NpNbDp33KI8vpsYKHrDzTMEdlLnb-cOP0Mw3FkASg" />
+                                    </div>
+                                    <div>
+                                        <h4
+                                            class="font-headline font-bold text-on-surface">Jameson
+                                            Blake</h4>
+                                        <p
+                                            class="text-xs text-on-surface-variant">jameson@blakeventures.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface font-medium">Blake
+                                    Ventures</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span class="text-sm text-on-surface">Venture
+                                    Partner</span>
+                            </td>
+                            <td class="px-8 py-6">
+                                <span
+                                    class="text-sm text-on-surface-variant">Feb
+                                    02, 2024</span>
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <button
+                                    class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Pagination/Footer of Table -->
+                <div
+                    class="px-8 py-6 flex items-center justify-between bg-surface-container-low/30">
+                    <span
+                        class="text-xs text-on-surface-variant font-medium">Showing
+                        4 of 24 Speakers</span>
+                    <div class="flex gap-2">
+                        <button
+                            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-container-high transition-all">
+                            <span
+                                class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button
+                            class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold shadow-sm">1</button>
+                        <button
+                            class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container-high transition-all">2</button>
+                        <button
+                            class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container-high transition-all">3</button>
+                        <button
+                            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface hover:bg-surface-container-high transition-all">
+                            <span
+                                class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Secondary Section: Featured Layout -->
+            <section class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="md:col-span-2 bg-primary-container/30 p-8 rounded-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3
+                            class="text-xl font-extrabold font-headline text-on-primary-container mb-2">Curate
+                            the Keynote Experience</h3>
+                        <p
+                            class="text-on-primary-container/80 text-sm max-w-sm mb-6 leading-relaxed">Organize
+                            your main stage speakers. Drag and drop into session
+                            slots from the dashboard view for real-time
+                            scheduling.</p>
+                        <button
+                            class="text-primary font-bold text-sm flex items-center gap-2 hover:translate-x-1 transition-transform">
+                            Go to Dashboard Schedule <span
+                                class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div class="absolute right-0 top-0 h-full w-1/3 opacity-10">
+                        <span
+                            class="material-symbols-outlined text-[180px] -rotate-12 translate-x-8 translate-y-8"
+                            style="font-variation-settings: 'FILL' 1;">groups</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-container-low p-8 rounded-2xl border-l-4 border-primary">
+                    <h3
+                        class="font-headline font-bold text-on-surface mb-4">Speaker
+                        Stats</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="text-sm text-on-surface-variant font-medium">Invited</span>
+                            <span
+                                class="font-headline font-extrabold text-on-surface">32</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="text-sm text-on-surface-variant font-medium">Confirmed</span>
+                            <span
+                                class="font-headline font-extrabold text-emerald-600">24</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="text-sm text-on-surface-variant font-medium">Waitlist</span>
+                            <span
+                                class="font-headline font-extrabold text-on-surface">8</span>
+                        </div>
+                        <div class="pt-4 border-t border-outline-variant/20">
+                            <div
+                                class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+                                <div class="h-full bg-primary"
+                                    style="width: 75%"></div>
+                            </div>
+                            <p
+                                class="text-[10px] font-bold text-on-surface-variant mt-2 uppercase tracking-wider">75%
+                                Confirmation Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body></html>
