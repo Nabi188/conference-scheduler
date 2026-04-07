@@ -32,7 +32,7 @@ class ConferenceController
         ];
 
         if ($this->model->create($data)) {
-            header('Location: /public/index.php?controller=conference&action=index');
+            header('Location: ' . route('conference'));
             exit;
         }
     }
@@ -40,7 +40,7 @@ class ConferenceController
     public function edit(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=conference&action=index');
+            header('Location: ' . route('conference'));
             exit;
         }
 
@@ -57,7 +57,7 @@ class ConferenceController
     public function update(?int $id): void
     {
         if (!$id) {
-            header('Location: /public/index.php?controller=conference&action=index');
+            header('Location: ' . route('conference'));
             exit;
         }
 
@@ -71,7 +71,7 @@ class ConferenceController
         ];
 
         if ($this->model->update($id, $data)) {
-            header('Location: /public/index.php?controller=conference&action=index');
+            header('Location: ' . route('conference'));
             exit;
         }
     }
@@ -79,7 +79,7 @@ class ConferenceController
     public function delete(?int $id): void
     {
         if ($id && $this->model->delete($id)) {
-            header('Location: /public/index.php?controller=conference&action=index');
+            header('Location: ' . route('conference'));
             exit;
         }
     }

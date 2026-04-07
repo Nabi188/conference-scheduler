@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>The Editorial Architect - Create Conference</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+            rel="stylesheet" />
+        <!-- Material Symbols -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet" />
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e1e2e9",
+                    "error-dim": "#4e0309",
+                    "inverse-on-surface": "#9a9d9f",
+                    "surface-container-low": "#f0f4f7",
+                    "on-surface": "#2a3439",
+                    "background": "#f7f9fb",
+                    "surface-container": "#e8eff3",
+                    "secondary-dim": "#515359",
+                    "on-error-container": "#752121",
+                    "tertiary-dim": "#51516c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#0b0f10",
+                    "primary-container": "#dae2fd",
+                    "tertiary": "#5d5d78",
+                    "surface-dim": "#cfdce3",
+                    "outline-variant": "#a9b4b9",
+                    "secondary-container": "#e1e2e9",
+                    "on-background": "#2a3439",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#3d3f45",
+                    "on-primary": "#f7f7ff",
+                    "surface-bright": "#f7f9fb",
+                    "primary-fixed-dim": "#ccd4ee",
+                    "inverse-primary": "#dae2fd",
+                    "on-primary-container": "#4a5167",
+                    "tertiary-fixed-dim": "#cbc9e9",
+                    "outline": "#717c82",
+                    "surface-container-highest": "#d9e4ea",
+                    "error": "#9f403d",
+                    "on-secondary-container": "#505257",
+                    "tertiary-container": "#d9d7f8",
+                    "on-tertiary-fixed": "#373851",
+                    "on-error": "#fff7f6",
+                    "on-tertiary": "#fbf7ff",
+                    "tertiary-fixed": "#d9d7f8",
+                    "secondary-fixed-dim": "#d3d4db",
+                    "surface-container-high": "#e1e9ee",
+                    "secondary": "#5d5f65",
+                    "primary": "#565e74",
+                    "surface-tint": "#565e74",
+                    "on-secondary-fixed-variant": "#595b61",
+                    "on-surface-variant": "#566166",
+                    "on-tertiary-fixed-variant": "#54546f",
+                    "on-primary-fixed-variant": "#535b71",
+                    "primary-dim": "#4a5268",
+                    "surface": "#f7f9fb",
+                    "error-container": "#fe8983",
+                    "on-secondary": "#f8f8ff",
+                    "on-tertiary-container": "#4a4a65",
+                    "on-primary-fixed": "#373f54",
+                    "surface-variant": "#d9e4ea"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+    </head>
+    <body class="bg-surface text-on-surface">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low flex flex-col py-8 z-50">
+            <div class="px-8 mb-12">
+                <h1 class="text-xl font-bold text-slate-900 tracking-tight">The
+                    Curator</h1>
+                <p
+                    class="text-xs font-medium text-on-surface-variant opacity-70">Admin
+                    Portal</p>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a
+                    class="flex items-center gap-4 text-slate-500 pl-8 py-3 hover:text-slate-900 transition-all font-manrope tracking-tight"
+                    href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+                <a
+                    class="flex items-center gap-4 text-slate-900 font-semibold border-l-4 border-primary pl-7 py-3 transition-all font-manrope tracking-tight"
+                    href="#">
+                    <span class="material-symbols-outlined">event</span>
+                    Conferences
+                </a>
+                <a
+                    class="flex items-center gap-4 text-slate-500 pl-8 py-3 hover:text-slate-900 transition-all font-manrope tracking-tight"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined">calendar_today</span>
+                    Sessions
+                </a>
+                <a
+                    class="flex items-center gap-4 text-slate-500 pl-8 py-3 hover:text-slate-900 transition-all font-manrope tracking-tight"
+                    href="#">
+                    <span class="material-symbols-outlined">meeting_room</span>
+                    Rooms
+                </a>
+                <a
+                    class="flex items-center gap-4 text-slate-500 pl-8 py-3 hover:text-slate-900 transition-all font-manrope tracking-tight"
+                    href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    Speakers
+                </a>
+            </nav>
+            <div class="px-8 mt-auto space-y-4">
+                <a
+                    class="flex items-center gap-4 text-slate-500 hover:text-slate-900 transition-all font-manrope tracking-tight text-sm"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined text-lg">help_outline</span>
+                    Support
+                </a>
+                <a
+                    class="flex items-center gap-4 text-slate-500 hover:text-slate-900 transition-all font-manrope tracking-tight text-sm"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined text-lg">logout</span>
+                    Sign Out
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content Canvas -->
+        <main class="ml-64 min-h-screen">
+            <!-- Top Bar -->
+            <header
+                class="w-full h-16 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-12 sticky top-0 z-40">
+                <div class="flex items-center gap-4">
+                    <span
+                        class="text-sm font-label font-medium text-slate-500">Conferences</span>
+                    <span
+                        class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+                    <span
+                        class="text-sm font-label font-semibold text-slate-900">New
+                        Conference</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <button
+                        class="text-slate-600 hover:bg-slate-200/50 p-2 rounded-full transition-colors">
+                        <span
+                            class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <button
+                        class="text-slate-600 hover:bg-slate-200/50 p-2 rounded-full transition-colors">
+                        <span class="material-symbols-outlined">settings</span>
+                    </button>
+                    <div
+                        class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+                        <img alt="Administrator profile"
+                            data-alt="Professional administrator headshot with neutral expression in soft studio lighting for profile image"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5rhFTbBuwH1F54tr-eHi5QppPWlpaLY-mG3HNWRi38XRLKh95L3hTefM-GrP3lb3gwX9EBOcADcnoBbdK6i7Z0ppd2C4XHn7BzXuyDxf1VGotLc7oPKqhHK_nOyfWVWTXn5cxakgUpZ9OtMMJkqMETDvpV3BEXxDMK3znAw6KxiDhCnnBWbJEQWTLZPoYOcWd6M-t5ztnsa301RXhDpg_tdzu3ePwd-dF12AyKkIp6Q8cEGlOyqIV3rk-Mtw9CXJeWmFND4EIhBaI" />
+                    </div>
+                </div>
+            </header>
+            <!-- Editorial Content Area -->
+            <div class="max-w-5xl mx-auto py-16 px-12">
+                <!-- Header Section -->
+                <div class="mb-12">
+                    <h2
+                        class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Create
+                        Conference</h2>
+                    <p
+                        class="text-on-surface-variant max-w-xl leading-relaxed">Design
+                        a new curated experience. Fill in the architectural
+                        details of your event to begin the curation process.</p>
+                </div>
+                <!-- Form Grid (Editorial Layout) -->
+                <form class="space-y-12">
+                    <!-- Main Form Section (The Bento Layout) -->
+                    <div class="grid grid-cols-12 gap-8">
+                        <!-- Title & Identity -->
+                        <div class="col-span-12 lg:col-span-8 space-y-8">
+                            <div
+                                class="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(42,52,57,0.04)]">
+                                <label
+                                    class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                    for="title">Conference Title</label>
+                                <input
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-container py-3 px-0 focus:ring-0 focus:border-primary text-xl font-headline font-semibold text-on-surface placeholder:text-outline-variant transition-colors"
+                                    id="title"
+                                    placeholder="e.g. International Design Symposium 2024"
+                                    type="text" />
+                            </div>
+                            <div
+                                class="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(42,52,57,0.04)]">
+                                <label
+                                    class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                    for="description">Description</label>
+                                <textarea
+                                    class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-container py-3 px-0 focus:ring-0 focus:border-primary text-body-md text-on-surface placeholder:text-outline-variant resize-none"
+                                    id="description"
+                                    placeholder="Define the vision and editorial scope of this event..."
+                                    rows="6"></textarea>
+                            </div>
+                        </div>
+                        <!-- Logistics Side Panel -->
+                        <div class="col-span-12 lg:col-span-4 space-y-8">
+                            <!-- Status Selection -->
+                            <div
+                                class="bg-surface-container-low p-8 rounded-xl">
+                                <label
+                                    class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                    for="status">Current Status</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full bg-white border-0 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary/20 text-sm font-medium text-on-surface appearance-none"
+                                        id="status">
+                                        <option
+                                            value="upcoming">upcoming</option>
+                                        <option value="ongoing">ongoing</option>
+                                        <option
+                                            value="finished">finished</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-3 text-slate-400 pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            <!-- Location -->
+                            <div
+                                class="bg-surface-container-low p-8 rounded-xl">
+                                <label
+                                    class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                    for="location">Location</label>
+                                <div
+                                    class="flex items-center bg-white rounded-lg px-4 focus-within:ring-2 focus-within:ring-primary/20">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-lg mr-2">location_on</span>
+                                    <input
+                                        class="w-full bg-transparent border-0 py-3 px-0 focus:ring-0 text-sm font-medium text-on-surface placeholder:text-outline-variant"
+                                        id="location"
+                                        placeholder="City or Venue"
+                                        type="text" />
+                                </div>
+                            </div>
+                            <!-- Date Window -->
+                            <div
+                                class="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(42,52,57,0.04)] space-y-6">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                        for="start_date">Start Date</label>
+                                    <input
+                                        class="w-full border-0 border-b-2 border-surface-container py-2 px-0 focus:ring-0 focus:border-primary text-sm font-medium text-on-surface"
+                                        id="start_date" type="date" />
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3"
+                                        for="end_date">End Date</label>
+                                    <input
+                                        class="w-full border-0 border-b-2 border-surface-container py-2 px-0 focus:ring-0 focus:border-primary text-sm font-medium text-on-surface"
+                                        id="end_date" type="date" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Action Bar -->
+                    <div
+                        class="flex items-center justify-end gap-6 pt-8 border-t border-surface-container-highest">
+                        <button
+                            class="text-primary font-semibold text-sm hover:translate-y-[-1px] transition-transform active:scale-95 px-6 py-3"
+                            type="button">
+                            Cancel
+                        </button>
+                        <button
+                            class="bg-primary text-on-primary px-10 py-4 rounded-lg font-bold text-sm shadow-xl shadow-primary/20 bg-gradient-to-br from-primary to-primary-dim hover:brightness-110 active:scale-95 transition-all"
+                            type="submit">
+                            Save Conference
+                        </button>
+                    </div>
+                </form>
+                <!-- Secondary Decorative Info Card -->
+                <div class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="relative overflow-hidden rounded-2xl h-48 bg-slate-900 flex items-end p-8">
+                        <img alt="Conference Venue Inspiration"
+                            class="absolute inset-0 w-full h-full object-cover opacity-50"
+                            data-alt="Wide angle view of a contemporary architectural building with glass facade at dusk reflecting city lights"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUSe6ihc1n3nDj6Cgy9Vq3215ly2IoOpNaBz_2JvpdLu8TQe9t0IEv_Utp2dpMXr_kKiOg-vp4G7ZPnGs5EI2fLvPGbpv_31Lqt6iZ7d9eeCJjw8wsEGXNmo20BZFzSKIUrWVLfVFyCiqUu_gm1JrZHL7lc83BrOEjO1-os_pWTvDCbEnzYgsm91SRz-hIwdOlyP0i58A7BTuUWIpshYnozAOvoaNMfBk8eFH9BJLp2b2a8UvGLh4HB8F3EgXTmCGX_AOifyPosyRV" />
+                        <div class="relative z-10">
+                            <p
+                                class="text-white text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Curation
+                                Tip</p>
+                            <p
+                                class="text-white font-manrope font-semibold text-lg">Define
+                                a cohesive visual identity for your
+                                sessions.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-tertiary-container/30 border border-tertiary-container p-8 rounded-2xl flex flex-col justify-center">
+                        <span
+                            class="material-symbols-outlined text-tertiary text-4xl mb-4">auto_awesome</span>
+                        <h3
+                            class="text-on-tertiary-container font-bold text-lg mb-2">Editorial
+                            Automation</h3>
+                        <p
+                            class="text-on-tertiary-container text-sm leading-relaxed opacity-80">Once
+                            saved, our system will automatically suggest room
+                            layouts based on your description and expected
+                            attendance.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body></html>
