@@ -132,7 +132,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/public/index.php?controller=auth&action=login" class="space-y-6">
+                <form method="POST" action="/login" class="space-y-6">
                     <!-- Username Field -->
                     <div class="space-y-2">
                         <label class="font-label text-xs font-semibold uppercase tracking-wider text-on-surface-variant block ml-1" for="username">Username</label>

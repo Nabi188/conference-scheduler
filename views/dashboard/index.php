@@ -186,7 +186,7 @@
                             <h2 class="text-2xl font-bold text-on-surface tracking-tight">Today's Sessions</h2>
                             <p class="text-on-surface-variant text-sm">Scheduled for today</p>
                         </div>
-                        <a href="/public/index.php?controller=session&action=index" class="text-xs font-bold text-primary hover:underline uppercase tracking-widest">View All Sessions</a>
+                        <a href="<?= route('session') ?>" class="text-xs font-bold text-primary hover:underline uppercase tracking-widest">View All Sessions</a>
                     </div>
                     <div class="bg-surface-container-low rounded-xl overflow-hidden border border-surface-container-high">
                         <table class="w-full text-left border-collapse">
@@ -278,7 +278,7 @@
                                             echo $days . ' day' . ($days > 1 ? 's' : '');
                                             ?>
                                         </div>
-                                        <a href="/public/index.php?controller=conference&action=edit&id=<?= $conference['id'] ?>" class="text-xs font-bold text-primary hover:underline">View Details</a>
+                                        <a href="<?= route('conference', 'edit', $conference['id']) ?>" class="text-xs font-bold text-primary hover:underline">View Details</a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -328,7 +328,7 @@
     </main>
 
     <!-- Floating Action Button (FAB) -->
-    <a href="/public/index.php?controller=session&action=create" class="fixed bottom-10 right-10 w-16 h-16 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform group z-50">
+    <a href="<?= route('session', 'create') ?>" class="fixed bottom-10 right-10 w-16 h-16 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform group z-50">
         <span class="material-symbols-outlined text-3xl">add</span>
         <span class="absolute right-full mr-4 px-3 py-1 bg-on-surface text-surface text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Schedule Session</span>
     </a>

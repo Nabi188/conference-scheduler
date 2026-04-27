@@ -6,15 +6,16 @@ if ($uri !== '/' && file_exists(__DIR__ . $uri)) {
     return false;
 }
 
-$_GET['controller'] = 'dashboard';
-$_GET['action'] = 'index';
-
 $parts = explode('/', trim($uri, '/'));
 
-if (!empty($parts[0])) {
+if (empty($parts[0])) {
+    $_GET['controller'] = 'dashboard';
+    $_GET['action'] = 'index';
+} else {
     switch ($parts[0]) {
         case 'dashboard':
             $_GET['controller'] = 'dashboard';
+            $_GET['action'] = 'index';
             break;
         case 'conferences':
             $_GET['controller'] = 'conference';
@@ -22,7 +23,9 @@ if (!empty($parts[0])) {
                 $_GET['id'] = (int)$parts[1];
                 $_GET['action'] = isset($parts[2]) ? $parts[2] : 'edit';
             } elseif (isset($parts[1])) {
-                $_GET['action'] = $parts[1]; // create, index
+                $_GET['action'] = $parts[1];
+            } else {
+                $_GET['action'] = 'index';
             }
             break;
         case 'sessions':
@@ -32,6 +35,8 @@ if (!empty($parts[0])) {
                 $_GET['action'] = isset($parts[2]) ? $parts[2] : 'edit';
             } elseif (isset($parts[1])) {
                 $_GET['action'] = $parts[1];
+            } else {
+                $_GET['action'] = 'index';
             }
             break;
         case 'speakers':
@@ -41,6 +46,8 @@ if (!empty($parts[0])) {
                 $_GET['action'] = isset($parts[2]) ? $parts[2] : 'edit';
             } elseif (isset($parts[1])) {
                 $_GET['action'] = $parts[1];
+            } else {
+                $_GET['action'] = 'index';
             }
             break;
         case 'rooms':
@@ -50,6 +57,8 @@ if (!empty($parts[0])) {
                 $_GET['action'] = isset($parts[2]) ? $parts[2] : 'edit';
             } elseif (isset($parts[1])) {
                 $_GET['action'] = $parts[1];
+            } else {
+                $_GET['action'] = 'index';
             }
             break;
         case 'login':

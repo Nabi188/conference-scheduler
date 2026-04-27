@@ -16,6 +16,10 @@ require_once dirname(__DIR__) . '/controllers/SessionController.php';
 require_once dirname(__DIR__) . '/controllers/SpeakerController.php';
 require_once dirname(__DIR__) . '/controllers/RoomController.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $controller = $_GET['controller'] ?? 'conference';
 $action     = $_GET['action']     ?? 'index';
 $id         = isset($_GET['id'])  ? (int)$_GET['id'] : null;
@@ -26,7 +30,7 @@ if ($controller === 'auth') {
             $username = trim($_POST['username'] ?? '');
             $password = trim($_POST['password'] ?? '');
             if (login($username, $password)) {
-                header('Location: /public/index.php?controller=dashboard&action=index');
+                header('Location: ' . route('dashboard'));
                 exit;
             }
             $error = 'Username or password is incorrect';
@@ -34,13 +38,14 @@ if ($controller === 'auth') {
         require_once dirname(__DIR__) . '/views/auth/login.php';
     } elseif ($action === 'logout') {
         logout();
-        header('Location: /public/index.php?controller=auth&action=login');
+        header('Location: /login');
         exit;
     }
     exit;
 }
 
 requireAuth();
+
 
 $controllers = [
     'dashboard'   => new DashboardController(),

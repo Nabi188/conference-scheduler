@@ -24,7 +24,7 @@ function isLoggedIn(): bool
 function requireAuth(): void
 {
     if (!isLoggedIn()) {
-        header('Location: /public/index.php?controller=auth&action=login');
+        header('Location: /login');
         exit;
     }
 }
