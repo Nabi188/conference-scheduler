@@ -128,6 +128,20 @@
             </header>
 
             <!-- Form Card -->
+            <?php if (!empty($errors)): ?>
+                <div class="mb-8 p-6 bg-error-container/20 border border-error/20 rounded-xl">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-error">error</span>
+                        <h3 class="text-error font-bold">Please fix the following errors:</h3>
+                    </div>
+                    <ul class="list-disc ml-9 text-sm text-error/80 space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <div class="bg-surface-container-lowest rounded-xl border border-surface-container-high shadow-sm">
                 <div class="p-8">
                     <form method="POST" action="<?= route('room', 'update', $room['id']) ?>" class="space-y-8">

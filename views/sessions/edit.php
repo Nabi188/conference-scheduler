@@ -109,6 +109,20 @@
                 </div>
             </div>
 
+            <?php if (!empty($errors)): ?>
+                <div class="mb-8 p-6 bg-error-container/20 border border-error/20 rounded-xl">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-error">error</span>
+                        <h3 class="text-error font-bold">Please fix the following errors:</h3>
+                    </div>
+                    <ul class="list-disc ml-9 text-sm text-error/80 space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <!-- Form -->
             <div class="bg-surface-container-lowest rounded-xl border border-surface-container-high shadow-sm">
                 <div class="p-10">
@@ -234,7 +248,7 @@
                                     id="start_time"
                                     name="start_time"
                                     required
-                                    value="<?= date('Y-m-d\TH:i', strtotime($session['start_time'])) ?>"
+                                    value="<?= !empty($session['start_time']) ? date('Y-m-d\TH:i', strtotime($session['start_time'])) : '' ?>"
                                     class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary" />
                             </div>
 
@@ -247,7 +261,7 @@
                                     id="end_time"
                                     name="end_time"
                                     required
-                                    value="<?= date('Y-m-d\TH:i', strtotime($session['end_time'])) ?>"
+                                    value="<?= !empty($session['end_time']) ? date('Y-m-d\TH:i', strtotime($session['end_time'])) : '' ?>"
                                     class="w-full bg-surface-container-low border-0 rounded-lg py-4 px-4 font-label focus:ring-2 focus:ring-primary" />
                             </div>
                         </div>

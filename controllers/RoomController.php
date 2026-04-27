@@ -29,6 +29,22 @@ class RoomController
             'description' => trim($_POST['description'] ?? ''),
         ];
 
+        $errors = [];
+        if (empty($data['name'])) {
+            $errors[] = 'Name is required.';
+        }
+        if (empty($data['location'])) {
+            $errors[] = 'Location is required.';
+        }
+        if ($data['capacity'] <= 0) {
+            $errors[] = 'Capacity must be greater than 0.';
+        }
+
+        if (!empty($errors)) {
+            require_once dirname(__DIR__) . '/views/rooms/create.php';
+            return;
+        }
+
         if ($this->model->create($data)) {
             header('Location: ' . route('room'));
             exit;
@@ -65,6 +81,25 @@ class RoomController
             'location'    => trim($_POST['location'] ?? ''),
             'description' => trim($_POST['description'] ?? ''),
         ];
+
+        $errors = [];
+        if (empty($data['name'])) {
+            $errors[] = 'Name is required.';
+        }
+        if (empty($data['location'])) {
+            $errors[] = 'Location is required.';
+        }
+        if ($data['capacity'] <= 0) {
+            $errors[] = 'Capacity must be greater than 0.';
+        }
+
+        if (!empty($errors)) {
+            $original = $this->model->find($id) ?: [];
+            $room = array_merge($original, $data);
+            $room['id'] = $id;
+            require_once dirname(__DIR__) . '/views/rooms/edit.php';
+            return;
+        }
 
         if ($this->model->update($id, $data)) {
             header('Location: ' . route('room'));

@@ -114,6 +114,20 @@
                 <p class="text-on-surface-variant font-body">Add a new speaker to your conference roster.</p>
             </div>
 
+            <?php if (!empty($errors)): ?>
+                <div class="mb-8 p-6 bg-error-container/20 border border-error/20 rounded-xl">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-error">error</span>
+                        <h3 class="text-error font-bold">Please fix the following errors:</h3>
+                    </div>
+                    <ul class="list-disc ml-9 text-sm text-error/80 space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <div class="grid grid-cols-12 gap-10">
                 <!-- Left Column: Avatar Preview -->
                 <div class="col-span-12 lg:col-span-4">
@@ -140,6 +154,7 @@
                                     class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
                                     type="text"
                                     name="name"
+                                    value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
                                     placeholder="e.g. Dr. Jane Smith"
                                     required />
                             </div>
@@ -151,6 +166,7 @@
                                     class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
                                     type="email"
                                     name="email"
+                                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
                                     placeholder="speaker@example.com" />
                             </div>
                         </div>
@@ -164,6 +180,7 @@
                                     class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
                                     type="text"
                                     name="company"
+                                    value="<?= htmlspecialchars($_POST['company'] ?? '') ?>"
                                     placeholder="Organization name" />
                             </div>
                             <div class="col-span-2 md:col-span-1">
@@ -174,6 +191,7 @@
                                     class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
                                     type="text"
                                     name="job_title"
+                                    value="<?= htmlspecialchars($_POST['job_title'] ?? '') ?>"
                                     placeholder="Position or role" />
                             </div>
                         </div>
@@ -186,6 +204,7 @@
                                 class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
                                 type="url"
                                 name="avatar_url"
+                                value="<?= htmlspecialchars($_POST['avatar_url'] ?? '') ?>"
                                 placeholder="https://example.com/avatar.jpg" />
                             <p class="mt-2 text-xs text-on-surface-variant italic">
                                 Direct link to a high-resolution professional portrait.
@@ -200,7 +219,7 @@
                                 class="w-full px-4 py-3 bg-surface-container-lowest border-none rounded-xl text-on-surface focus:ring-2 focus:ring-primary/20 transition-all shadow-sm leading-relaxed"
                                 name="bio"
                                 rows="6"
-                                placeholder="Describe the speaker's background, expertise, and achievements..."></textarea>
+                                placeholder="Describe the speaker's background, expertise, and achievements..."><?= htmlspecialchars($_POST['bio'] ?? '') ?></textarea>
                         </div>
 
                         <div class="pt-8 flex items-center justify-end gap-4 border-t border-surface-container-high">

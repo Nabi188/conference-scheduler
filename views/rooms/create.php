@@ -102,6 +102,20 @@
             </header>
 
             <!-- Form Card -->
+            <?php if (!empty($errors)): ?>
+                <div class="mb-8 p-6 bg-error-container/20 border border-error/20 rounded-xl">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-error">error</span>
+                        <h3 class="text-error font-bold">Please fix the following errors:</h3>
+                    </div>
+                    <ul class="list-disc ml-9 text-sm text-error/80 space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <div class="bg-surface-container-lowest rounded-xl border border-surface-container-high shadow-sm">
                 <div class="p-8">
                     <form method="POST" action="<?= route('room', 'store') ?>" class="space-y-8">
@@ -127,6 +141,7 @@
                                     id="name"
                                     name="name"
                                     required
+                                    value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
                                     placeholder="e.g., Grand Ballroom A"
                                     class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all font-body" />
                             </div>
@@ -141,6 +156,7 @@
                                     id="location"
                                     name="location"
                                     required
+                                    value="<?= htmlspecialchars($_POST['location'] ?? '') ?>"
                                     placeholder="e.g., Building A, Floor 3"
                                     class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all font-body" />
                             </div>
@@ -156,6 +172,7 @@
                                     name="capacity"
                                     required
                                     min="1"
+                                    value="<?= htmlspecialchars($_POST['capacity'] ?? '') ?>"
                                     placeholder="e.g., 150"
                                     class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all font-body" />
                             </div>
@@ -170,7 +187,7 @@
                                     name="description"
                                     rows="4"
                                     placeholder="Describe the room amenities, layout, or special features..."
-                                    class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all font-body resize-none"></textarea>
+                                    class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all font-body resize-none"><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
                             </div>
                         </div>
 

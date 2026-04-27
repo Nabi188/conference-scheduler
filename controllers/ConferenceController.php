@@ -31,6 +31,27 @@ class ConferenceController
             'status'      => trim($_POST['status'] ?? 'upcoming'),
         ];
 
+        $errors = [];
+        if (empty($data['title'])) {
+            $errors[] = 'Title is required.';
+        }
+        if (empty($data['start_date'])) {
+            $errors[] = 'Start date is required.';
+        }
+        if (empty($data['end_date'])) {
+            $errors[] = 'End date is required.';
+        } elseif (!empty($data['start_date']) && $data['end_date'] < $data['start_date']) {
+            $errors[] = 'End date must be on or after start date.';
+        }
+        if (!in_array($data['status'], ['upcoming', 'ongoing', 'finished'])) {
+            $errors[] = 'Invalid status.';
+        }
+
+        if (!empty($errors)) {
+            require_once dirname(__DIR__) . '/views/conferences/create.php';
+            return;
+        }
+
         if ($this->model->create($data)) {
             header('Location: ' . route('conference'));
             exit;
@@ -69,6 +90,30 @@ class ConferenceController
             'end_date'    => trim($_POST['end_date'] ?? ''),
             'status'      => trim($_POST['status'] ?? 'upcoming'),
         ];
+
+        $errors = [];
+        if (empty($data['title'])) {
+            $errors[] = 'Title is required.';
+        }
+        if (empty($data['start_date'])) {
+            $errors[] = 'Start date is required.';
+        }
+        if (empty($data['end_date'])) {
+            $errors[] = 'End date is required.';
+        } elseif (!empty($data['start_date']) && $data['end_date'] < $data['start_date']) {
+            $errors[] = 'End date must be on or after start date.';
+        }
+        if (!in_array($data['status'], ['upcoming', 'ongoing', 'finished'])) {
+            $errors[] = 'Invalid status.';
+        }
+
+        if (!empty($errors)) {
+            $original = $this->model->find($id) ?: [];
+            $conference = array_merge($original, $data);
+            $conference['id'] = $id;
+            require_once dirname(__DIR__) . '/views/conferences/edit.php';
+            return;
+        }
 
         if ($this->model->update($id, $data)) {
             header('Location: ' . route('conference'));

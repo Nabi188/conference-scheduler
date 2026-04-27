@@ -74,7 +74,38 @@ class SessionController
             'description'   => trim($_POST['description'] ?? ''),
             'start_time'    => trim($_POST['start_time'] ?? ''),
             'end_time'      => trim($_POST['end_time'] ?? ''),
+            'status'        => trim($_POST['status'] ?? 'scheduled'),
         ];
+
+        $errors = [];
+        if (empty($data['conference_id']) || $data['conference_id'] <= 0) {
+            $errors[] = 'Conference is required.';
+        }
+        if (empty($data['title'])) {
+            $errors[] = 'Title is required.';
+        }
+        if (empty($data['start_time'])) {
+            $errors[] = 'Start time is required.';
+        }
+        if (empty($data['end_time'])) {
+            $errors[] = 'End time is required.';
+        } elseif (!empty($data['start_time']) && $data['end_time'] <= $data['start_time']) {
+            $errors[] = 'End time must be after start time.';
+        }
+        if ($data['speaker_id'] !== null && $data['speaker_id'] <= 0) {
+            $errors[] = 'Invalid speaker selected.';
+        }
+        if ($data['room_id'] !== null && $data['room_id'] <= 0) {
+            $errors[] = 'Invalid room selected.';
+        }
+
+        if (!empty($errors)) {
+            $conferences = $this->conferenceModel->all();
+            $speakers = $this->speakerModel->all();
+            $rooms = $this->roomModel->all();
+            require_once dirname(__DIR__) . '/views/sessions/create.php';
+            return;
+        }
 
         if ($this->model->create($data)) {
             header('Location: ' . route('session'));
@@ -117,7 +148,41 @@ class SessionController
             'description'   => trim($_POST['description'] ?? ''),
             'start_time'    => trim($_POST['start_time'] ?? ''),
             'end_time'      => trim($_POST['end_time'] ?? ''),
+            'status'        => trim($_POST['status'] ?? 'scheduled'),
         ];
+
+        $errors = [];
+        if (empty($data['conference_id']) || $data['conference_id'] <= 0) {
+            $errors[] = 'Conference is required.';
+        }
+        if (empty($data['title'])) {
+            $errors[] = 'Title is required.';
+        }
+        if (empty($data['start_time'])) {
+            $errors[] = 'Start time is required.';
+        }
+        if (empty($data['end_time'])) {
+            $errors[] = 'End time is required.';
+        } elseif (!empty($data['start_time']) && $data['end_time'] <= $data['start_time']) {
+            $errors[] = 'End time must be after start time.';
+        }
+        if ($data['speaker_id'] !== null && $data['speaker_id'] <= 0) {
+            $errors[] = 'Invalid speaker selected.';
+        }
+        if ($data['room_id'] !== null && $data['room_id'] <= 0) {
+            $errors[] = 'Invalid room selected.';
+        }
+
+        if (!empty($errors)) {
+            $original = $this->model->find($id) ?: [];
+            $session = array_merge($original, $data);
+            $session['id'] = $id;
+            $conferences = $this->conferenceModel->all();
+            $speakers = $this->speakerModel->all();
+            $rooms = $this->roomModel->all();
+            require_once dirname(__DIR__) . '/views/sessions/edit.php';
+            return;
+        }
 
         if ($this->model->update($id, $data)) {
             header('Location: ' . route('session'));

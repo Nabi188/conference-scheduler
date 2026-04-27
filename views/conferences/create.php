@@ -117,6 +117,20 @@
                 <p class="text-on-surface-variant max-w-xl leading-relaxed">Design a new curated experience. Fill in the architectural details of your event to begin the curation process.</p>
             </div>
 
+            <?php if (!empty($errors)): ?>
+                <div class="mb-8 p-6 bg-error-container/20 border border-error/20 rounded-xl">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-error">error</span>
+                        <h3 class="text-error font-bold">Please fix the following errors:</h3>
+                    </div>
+                    <ul class="list-disc ml-9 text-sm text-error/80 space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <!-- Form Grid (Editorial Layout) -->
             <form method="POST" action="<?= route('conference', 'store') ?>" class="space-y-12">
                 <!-- Main Form Section (The Bento Layout) -->
@@ -133,6 +147,7 @@
                                 name="title"
                                 placeholder="e.g. International Design Symposium 2024"
                                 type="text"
+                                value="<?= htmlspecialchars($_POST['title'] ?? '') ?>"
                                 required />
                         </div>
 
@@ -145,7 +160,7 @@
                                 id="description"
                                 name="description"
                                 placeholder="Define the vision and editorial scope of this event..."
-                                rows="6"></textarea>
+                                rows="6"><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
                         </div>
                     </div>
 
@@ -162,9 +177,9 @@
                                     id="status"
                                     name="status"
                                     required>
-                                    <option value="upcoming" selected>Upcoming</option>
-                                    <option value="ongoing">Ongoing</option>
-                                    <option value="finished">Finished</option>
+                                    <option value="upcoming" <?= ($_POST['status'] ?? '') === 'upcoming' ? 'selected' : '' ?>>Upcoming</option>
+                                    <option value="ongoing" <?= ($_POST['status'] ?? '') === 'ongoing' ? 'selected' : '' ?>>Ongoing</option>
+                                    <option value="finished" <?= ($_POST['status'] ?? '') === 'finished' ? 'selected' : '' ?>>Finished</option>
                                 </select>
                                 <span class="material-symbols-outlined absolute right-3 top-3 text-slate-400 pointer-events-none">expand_more</span>
                             </div>
@@ -182,6 +197,7 @@
                                     id="location"
                                     name="location"
                                     placeholder="City or Venue"
+                                    value="<?= htmlspecialchars($_POST['location'] ?? '') ?>"
                                     type="text" />
                             </div>
                         </div>
@@ -197,6 +213,7 @@
                                     id="start_date"
                                     name="start_date"
                                     type="date"
+                                    value="<?= htmlspecialchars($_POST['start_date'] ?? '') ?>"
                                     required />
                             </div>
                             <div>
@@ -208,6 +225,7 @@
                                     id="end_date"
                                     name="end_date"
                                     type="date"
+                                    value="<?= htmlspecialchars($_POST['end_date'] ?? '') ?>"
                                     required />
                             </div>
                         </div>
